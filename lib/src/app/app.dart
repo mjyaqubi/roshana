@@ -89,37 +89,8 @@ class _RoshanaHomeScreenState extends State<RoshanaHomeScreen> {
         title: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
-            // Profile Icon button next to brand logo
-            GestureDetector(
-              onTap: () {
-                HapticFeedback.selectionClick();
-                Navigator.of(context).push(
-                  MaterialPageRoute(
-                    builder: (context) => ProfilePage(currentLocale: widget.roshanaLocale),
-                  ),
-                );
-              },
-              child: Container(
-                padding: const EdgeInsets.all(6),
-                decoration: BoxDecoration(
-                  gradient: const LinearGradient(
-                    colors: [Color(0xFFF59E0B), Color(0xFFD97706)],
-                  ),
-                  shape: BoxShape.circle,
-                  boxShadow: [
-                    BoxShadow(
-                      color: const Color(0xFFF59E0B).withValues(alpha: 0.3),
-                      blurRadius: 6,
-                    ),
-                  ],
-                ),
-                child: const Icon(Icons.person_rounded, color: Colors.black, size: 18),
-              ),
-            ),
-            const SizedBox(width: 10),
-
             const Icon(Icons.auto_stories_rounded, color: Color(0xFFF59E0B)),
-            const SizedBox(width: 6),
+            const SizedBox(width: 8),
             Text(
               'روشنا',
               style: RoshanaTypography.getTextStyle(
@@ -132,6 +103,35 @@ class _RoshanaHomeScreenState extends State<RoshanaHomeScreen> {
           ],
         ),
         actions: [
+          // Profile Avatar Icon Button on the side
+          GestureDetector(
+            onTap: () {
+              HapticFeedback.selectionClick();
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => ProfilePage(currentLocale: widget.roshanaLocale),
+                ),
+              );
+            },
+            child: Container(
+              padding: const EdgeInsets.all(6),
+              decoration: BoxDecoration(
+                gradient: const LinearGradient(
+                  colors: [Color(0xFFF59E0B), Color(0xFFD97706)],
+                ),
+                shape: BoxShape.circle,
+                boxShadow: [
+                  BoxShadow(
+                    color: const Color(0xFFF59E0B).withValues(alpha: 0.3),
+                    blurRadius: 6,
+                  ),
+                ],
+              ),
+              child: const Icon(Icons.person_rounded, color: Colors.black, size: 18),
+            ),
+          ),
+          const SizedBox(width: 10),
+
           // Language Switcher Dropdown
           PopupMenuButton<RoshanaLocale>(
             icon: Container(
