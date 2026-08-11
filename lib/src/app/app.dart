@@ -8,6 +8,7 @@ import '../core/theme/app_theme.dart';
 import '../features/gamification/presentation/widgets/streak_header_widget.dart';
 import '../features/library/data/mock_book_summaries.dart';
 import '../features/library/domain/entities/book_summary.dart';
+import '../features/library/presentation/notifiers/category_notifier.dart';
 import '../features/library/presentation/widgets/book_sections_widget.dart';
 import '../features/reader_player/presentation/widgets/card_deck_reader.dart';
 
@@ -16,8 +17,11 @@ class RoshanaApp extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ChangeNotifierProvider(
-      create: (_) => LocaleNotifier(),
+    return MultiProvider(
+      providers: [
+        ChangeNotifierProvider(create: (_) => LocaleNotifier()),
+        ChangeNotifierProvider(create: (_) => CategoryNotifier()),
+      ],
       child: Consumer<LocaleNotifier>(
         builder: (context, localeNotifier, child) {
           final roshanaLocale = localeNotifier.roshanaLocale;
@@ -193,7 +197,7 @@ class _RoshanaHomeScreenState extends State<RoshanaHomeScreen> {
                 ),
               ),
 
-              // 3 Draggable Book Cover Sections
+              // 4 Draggable Book Cover Sections (Picked for You, Continue Reading, Category Picks, Saved for Later)
               BookSectionsWidget(
                 summaries: sampleBookSummaries,
                 selectedSummary: _selectedSummary,
