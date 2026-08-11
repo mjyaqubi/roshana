@@ -1,0 +1,43 @@
+{
+  "@@locale": "en",
+  "appTitle": "Roshana",
+  "appSubtitle": "Micro-Learning & Book Summaries",
+  "exploreCatalog": "Explore Library",
+  "dailyStreak": "Daily Streak",
+  "streakDays": "{count} Day Streak",
+  "@streakDays": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "streakFreezeActive": "Streak Freeze Active",
+  "srsReviewDue": "Flashcards Due ({count})",
+  "@srsReviewDue": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "readSummary": "Read Summary",
+  "listenAudio": "Listen Audio",
+  "switchLanguage": "Switch Language",
+  "persianIran": "Persian (Iran)",
+  "persianAfghan": "Persian (Dari - Afghanistan)",
+  "englishUs": "English (US)",
+  "proSubscriber": "Roshana Pro Member",
+  "freeTier": "Free Tier",
+  "upgradeToPro": "Upgrade to Pro",
+  "takeawayCard": "Takeaway {current} of {total}",
+  "@takeawayCard": {
+    "placeholders": {
+      "current": { "type": "int" },
+      "total": { "type": "int" }
+    }
+  },
+  "keyPrinciple": "Key Principle",
+  "actionableInsight": "Actionable Insight",
+  "coreTakeaway": "Core Takeaway"
+}

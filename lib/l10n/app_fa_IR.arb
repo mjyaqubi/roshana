@@ -1,0 +1,43 @@
+{
+  "@@locale": "fa_IR",
+  "appTitle": "روشنا",
+  "appSubtitle": "خلاصه کتاب‌ها و یادگیری روزانه",
+  "exploreCatalog": "کاوش کتاب‌ها",
+  "dailyStreak": "زنجیره مطالعه",
+  "streakDays": "{count} روز پیاپی",
+  "@streakDays": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "streakFreezeActive": "یخ‌ساز زنجیره فعال است",
+  "srsReviewDue": "یادآوری کارت‌ها ({count})",
+  "@srsReviewDue": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "readSummary": "مطالعه خلاصه",
+  "listenAudio": "شنیدن روایت صوتی",
+  "switchLanguage": "تغییر زبان",
+  "persianIran": "فارسی (ایران)",
+  "persianAfghan": "فارسی دری (افغانستان)",
+  "englishUs": "English (US)",
+  "proSubscriber": "اشتراک ویژه روشنا",
+  "freeTier": "نسخه رایگان",
+  "upgradeToPro": "ارتقا به نسخه ویژه",
+  "takeawayCard": "نکته کلیدی {current} از {total}",
+  "@takeawayCard": {
+    "placeholders": {
+      "current": { "type": "int" },
+      "total": { "type": "int" }
+    }
+  },
+  "keyPrinciple": "اصل بنیادی",
+  "actionableInsight": "راهکار عملی",
+  "coreTakeaway": "دستآورد اصلی"
+}

@@ -1,0 +1,23 @@
+{
+  "@@locale": "fa_AF",
+  "appTitle": "روشنا",
+  "appSubtitle": "خلاصه کتاب‌ها و آموختن روزانه",
+  "exploreCatalog": "جستجوی کتاب‌ها",
+  "dailyStreak": "زنجیره مطالعه",
+  "streakDays": "{count} روز پیاپی",
+  "streakFreezeActive": "حفاظت زنجیره فعال است",
+  "srsReviewDue": "مرور کارت‌ها ({count})",
+  "readSummary": "خواندن خلاصه",
+  "listenAudio": "شنیدن صدای خلاصه",
+  "switchLanguage": "تغییر زبان",
+  "persianIran": "فارسی (ایران)",
+  "persianAfghan": "فارسی دری (افغانستان)",
+  "englishUs": "English (US)",
+  "proSubscriber": "اشتراک ویژه روشنا",
+  "freeTier": "نسخه رایگان",
+  "upgradeToPro": "ارتقا به نسخه ویژه",
+  "takeawayCard": "نکته مهم {current} از {total}",
+  "keyPrinciple": "اصل اساسی",
+  "actionableInsight": "رهنمود عملی",
+  "coreTakeaway": "آموزه اصلی"
+}
