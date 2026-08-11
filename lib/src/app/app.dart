@@ -5,6 +5,7 @@ import '../core/i18n/app_locale.dart';
 import '../core/i18n/font_resolver.dart';
 import '../core/i18n/locale_notifier.dart';
 import '../core/theme/app_theme.dart';
+import '../core/utils/app_scroll_behavior.dart';
 import '../features/gamification/presentation/widgets/streak_header_widget.dart';
 import '../features/library/data/mock_book_summaries.dart';
 import '../features/library/domain/entities/book_summary.dart';
@@ -28,6 +29,7 @@ class RoshanaApp extends StatelessWidget {
           return MaterialApp(
             title: 'Roshana',
             debugShowCheckedModeBanner: false,
+            scrollBehavior: AppScrollBehavior(),
             locale: localeNotifier.currentLocale,
             supportedLocales: const [
               Locale('fa', 'IR'),
@@ -183,7 +185,7 @@ class _RoshanaHomeScreenState extends State<RoshanaHomeScreen> {
       ),
       body: SafeArea(
         child: SingleChildScrollView(
-          physics: const BouncingScrollPhysics(),
+          physics: const AlwaysScrollableScrollPhysics(parent: BouncingScrollPhysics()),
           child: Column(
             children: [
               // Daily Streak Header

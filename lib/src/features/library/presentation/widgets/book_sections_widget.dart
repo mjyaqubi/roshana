@@ -185,7 +185,7 @@ class _CategoryBoxSection extends StatelessWidget {
             height: 60,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
-              physics: const BouncingScrollPhysics(),
+              physics: const AlwaysScrollableScrollPhysics(parent: BouncingScrollPhysics()),
               padding: const EdgeInsets.symmetric(horizontal: 16),
               itemCount: selectedCategories.isEmpty ? 1 : selectedCategories.length,
               itemBuilder: (context, index) {
@@ -365,7 +365,7 @@ class _BookHorizontalSection extends StatelessWidget {
             height: 155,
             child: ListView.builder(
               scrollDirection: Axis.horizontal,
-              physics: const BouncingScrollPhysics(),
+              physics: const AlwaysScrollableScrollPhysics(parent: BouncingScrollPhysics()),
               padding: const EdgeInsets.symmetric(horizontal: 16),
               itemCount: books.length,
               itemBuilder: (context, index) {
