@@ -7,6 +7,7 @@ import '../../../reader_player/presentation/pages/book_reader_page.dart';
 import '../../domain/entities/book_summary.dart';
 import '../../domain/entities/category_item.dart';
 import '../notifiers/category_notifier.dart';
+import '../pages/book_category_grid_page.dart';
 import '../pages/category_selection_page.dart';
 
 class BookSectionsWidget extends StatelessWidget {
@@ -320,42 +321,64 @@ class _BookHorizontalSection extends StatelessWidget {
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
         children: [
-          // Section Title Header
-          Padding(
-            padding: const EdgeInsets.symmetric(horizontal: 20),
-            child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      title,
-                      style: RoshanaTypography.getTextStyle(
-                        currentLocale: currentLocale,
-                        fontSize: 16,
-                        fontWeight: FontWeight.bold,
-                        color: Colors.white,
-                      ),
-                    ),
-                    Text(
-                      subtitle,
-                      style: RoshanaTypography.getTextStyle(
-                        currentLocale: currentLocale,
-                        fontSize: 11,
-                        color: Colors.white54,
-                      ),
-                    ),
-                  ],
+          // Section Title Header (Clickable to open BookCategoryGridPage!)
+          GestureDetector(
+            onTap: () {
+              HapticFeedback.selectionClick();
+              Navigator.of(context).push(
+                MaterialPageRoute(
+                  builder: (context) => BookCategoryGridPage(
+                    sectionTitle: title,
+                    initialBooks: books,
+                    currentLocale: currentLocale,
+                  ),
                 ),
-                Icon(
-                  currentLocale.direction == TextDirection.rtl
-                      ? Icons.arrow_back_ios_new_rounded
-                      : Icons.arrow_forward_ios_rounded,
-                  size: 13,
-                  color: const Color(0xFFF59E0B),
-                ),
-              ],
+              );
+            },
+            child: Container(
+              color: Colors.transparent,
+              padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 4),
+              child: Row(
+                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                children: [
+                  Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        title,
+                        style: RoshanaTypography.getTextStyle(
+                          currentLocale: currentLocale,
+                          fontSize: 16,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white,
+                        ),
+                      ),
+                      Text(
+                        subtitle,
+                        style: RoshanaTypography.getTextStyle(
+                          currentLocale: currentLocale,
+                          fontSize: 11,
+                          color: Colors.white54,
+                        ),
+                      ),
+                    ],
+                  ),
+                  Container(
+                    padding: const EdgeInsets.all(6),
+                    decoration: const BoxDecoration(
+                      color: Colors.white10,
+                      shape: BoxShape.circle,
+                    ),
+                    child: Icon(
+                      currentLocale.direction == TextDirection.rtl
+                          ? Icons.arrow_back_ios_new_rounded
+                          : Icons.arrow_forward_ios_rounded,
+                      size: 13,
+                      color: const Color(0xFFF59E0B),
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
           const SizedBox(height: 10),
