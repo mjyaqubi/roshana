@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:provider/provider.dart';
 import '../core/i18n/app_locale.dart';
@@ -6,6 +7,7 @@ import '../core/i18n/font_resolver.dart';
 import '../core/i18n/locale_notifier.dart';
 import '../core/theme/app_theme.dart';
 import '../core/utils/app_scroll_behavior.dart';
+import '../features/auth/presentation/pages/profile_page.dart';
 import '../features/gamification/presentation/widgets/streak_header_widget.dart';
 import '../features/library/data/mock_book_summaries.dart';
 import '../features/library/domain/entities/book_summary.dart';
@@ -87,8 +89,37 @@ class _RoshanaHomeScreenState extends State<RoshanaHomeScreen> {
         title: Row(
           mainAxisSize: MainAxisSize.min,
           children: [
+            // Profile Icon button next to brand logo
+            GestureDetector(
+              onTap: () {
+                HapticFeedback.selectionClick();
+                Navigator.of(context).push(
+                  MaterialPageRoute(
+                    builder: (context) => ProfilePage(currentLocale: widget.roshanaLocale),
+                  ),
+                );
+              },
+              child: Container(
+                padding: const EdgeInsets.all(6),
+                decoration: BoxDecoration(
+                  gradient: const LinearGradient(
+                    colors: [Color(0xFFF59E0B), Color(0xFFD97706)],
+                  ),
+                  shape: BoxShape.circle,
+                  boxShadow: [
+                    BoxShadow(
+                      color: const Color(0xFFF59E0B).withValues(alpha: 0.3),
+                      blurRadius: 6,
+                    ),
+                  ],
+                ),
+                child: const Icon(Icons.person_rounded, color: Colors.black, size: 18),
+              ),
+            ),
+            const SizedBox(width: 10),
+
             const Icon(Icons.auto_stories_rounded, color: Color(0xFFF59E0B)),
-            const SizedBox(width: 8),
+            const SizedBox(width: 6),
             Text(
               'روشنا',
               style: RoshanaTypography.getTextStyle(
