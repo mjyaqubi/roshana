@@ -2,7 +2,7 @@ import '../domain/entities/book_summary.dart';
 import '../../reader_player/domain/entities/takeaway_card.dart';
 
 final List<BookSummary> sampleBookSummaries = [
-  // Picked for You & In Progress
+  // 1. Atomic Habits
   BookSummary(
     summaryId: 'atomic_habits_01',
     titleFaIr: 'عادت‌های اتمی',
@@ -12,8 +12,8 @@ final List<BookSummary> sampleBookSummaries = [
     coverImageUrl: 'https://images.unsplash.com/photo-1544716278-ca5e3f4abd8c?auto=format&fit=crop&w=600&q=80',
     category: 'Self-Improvement',
     totalReadingMinutes: 4,
-    tags: ['Habits', 'Productivity', 'Psychology'],
-    progress: 0.65, // 65% in progress
+    tags: ['Habits', 'Productivity', 'Self-Improvement'],
+    progress: 0.65,
     isPickedForYou: true,
     isSavedForLater: false,
     cards: [
@@ -39,21 +39,10 @@ final List<BookSummary> sampleBookSummaries = [
         audioStartMs: 12000,
         audioEndMs: 25000,
       ),
-      const TakeawayCard(
-        cardId: 'ah_card_3',
-        summaryId: 'atomic_habits_01',
-        cardIndex: 3,
-        type: CardType.actionableInsight,
-        contentFaIr: 'برای ساختن یک عادت جدید، آن را آشکار، جذاب، ساده و رضایت‌بخش کنید.',
-        contentFaAf: 'برای ساختن یک عادت جدید، آن را هویدا، دلپذیر، آسان و خوشایند بسازید.',
-        contentEnUs: 'To build a lasting habit, make it obvious, attractive, easy, and satisfying.',
-        audioStartMs: 25000,
-        audioEndMs: 40000,
-      ),
     ],
   ),
 
-  // Picked for You
+  // 2. Thinking, Fast and Slow
   BookSummary(
     summaryId: 'thinking_fast_slow_02',
     titleFaIr: 'تفکر، سریع و کند',
@@ -63,8 +52,8 @@ final List<BookSummary> sampleBookSummaries = [
     coverImageUrl: 'https://images.unsplash.com/photo-1507842217343-583bb7270b66?auto=format&fit=crop&w=600&q=80',
     category: 'Psychology',
     totalReadingMinutes: 5,
-    tags: ['Mind', 'Decision Making', 'Cognition'],
-    progress: 0.40, // 40% in progress
+    tags: ['Psychology', 'Mind', 'Decision Making'],
+    progress: 0.40,
     isPickedForYou: true,
     isSavedForLater: false,
     cards: [
@@ -79,21 +68,10 @@ final List<BookSummary> sampleBookSummaries = [
         audioStartMs: 0,
         audioEndMs: 15000,
       ),
-      const TakeawayCard(
-        cardId: 'tfs_card_2',
-        summaryId: 'thinking_fast_slow_02',
-        cardIndex: 2,
-        type: CardType.keyPrinciple,
-        contentFaIr: 'خطاهای شناختی ناشی از تکیه بیش از حد بر سیستم ۱ در مواقع حساس هستند.',
-        contentFaAf: 'اشتباهات ذهنی ناشی از اتکای بیش از حد بر سیستم ۱ در حالات مهم می‌باشند.',
-        contentEnUs: 'Cognitive biases arise when we overly rely on System 1 for complex judgments.',
-        audioStartMs: 15000,
-        audioEndMs: 30000,
-      ),
     ],
   ),
 
-  // Picked for You & Saved for Later
+  // 3. Deep Work
   BookSummary(
     summaryId: 'deep_work_03',
     titleFaIr: 'کار عمیق',
@@ -103,8 +81,8 @@ final List<BookSummary> sampleBookSummaries = [
     coverImageUrl: 'https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=600&q=80',
     category: 'Productivity',
     totalReadingMinutes: 4,
-    tags: ['Focus', 'Productivity', 'Success'],
-    progress: 0.0,
+    tags: ['Productivity', 'Focus', 'Success'],
+    progress: 0.25,
     isPickedForYou: true,
     isSavedForLater: true,
     cards: [
@@ -122,7 +100,7 @@ final List<BookSummary> sampleBookSummaries = [
     ],
   ),
 
-  // In Progress
+  // 4. The Psychology of Money
   BookSummary(
     summaryId: 'psychology_of_money_04',
     titleFaIr: 'روانشناسی پول',
@@ -132,9 +110,9 @@ final List<BookSummary> sampleBookSummaries = [
     coverImageUrl: 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=600&q=80',
     category: 'Finance',
     totalReadingMinutes: 5,
-    tags: ['Wealth', 'Finance', 'Behavior'],
-    progress: 0.80, // 80% in progress
-    isPickedForYou: false,
+    tags: ['Finance', 'Wealth', 'Behavior'],
+    progress: 0.80,
+    isPickedForYou: true,
     isSavedForLater: false,
     cards: [
       const TakeawayCard(
@@ -151,9 +129,38 @@ final List<BookSummary> sampleBookSummaries = [
     ],
   ),
 
-  // Saved for Later
+  // 5. Start With Why
   BookSummary(
-    summaryId: 'sapiens_05',
+    summaryId: 'start_with_why_05',
+    titleFaIr: 'با چرا شروع کنید',
+    titleFaAf: 'با چرا شروع کنید',
+    titleEnUs: 'Start With Why',
+    originalAuthor: 'Simon Sinek',
+    coverImageUrl: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=600&q=80',
+    category: 'Leadership',
+    totalReadingMinutes: 5,
+    tags: ['Leadership', 'Business', 'Motivation'],
+    progress: 0.15,
+    isPickedForYou: true,
+    isSavedForLater: false,
+    cards: [
+      const TakeawayCard(
+        cardId: 'sww_card_1',
+        summaryId: 'start_with_why_05',
+        cardIndex: 1,
+        type: CardType.coreTakeaway,
+        contentFaIr: 'مردم آنچه را انجام می‌دهید نمی‌خرند؛ آنها «چرا»یی انجام آن را می‌خرند.',
+        contentFaAf: 'مردم آنچه انجام می‌دهید را نمی‌خرند؛ آنها «چرا»ی آن را می‌خرند.',
+        contentEnUs: 'People don’t buy what you do; they buy why you do it.',
+        audioStartMs: 0,
+        audioEndMs: 13000,
+      ),
+    ],
+  ),
+
+  // 6. Sapiens
+  BookSummary(
+    summaryId: 'sapiens_06',
     titleFaIr: 'انسان عاقل (ساپینس)',
     titleFaAf: 'انسان عاقل (ساپینس)',
     titleEnUs: 'Sapiens: A Brief History of Humankind',
@@ -161,17 +168,17 @@ final List<BookSummary> sampleBookSummaries = [
     coverImageUrl: 'https://images.unsplash.com/photo-1461360370896-922624d12aa1?auto=format&fit=crop&w=600&q=80',
     category: 'History',
     totalReadingMinutes: 6,
-    tags: ['History', 'Evolution', 'Humanity'],
+    tags: ['History', 'Culture', 'Evolution'],
     progress: 0.0,
     isPickedForYou: false,
     isSavedForLater: true,
     cards: [
       const TakeawayCard(
         cardId: 'sap_card_1',
-        summaryId: 'sapiens_05',
+        summaryId: 'sapiens_06',
         cardIndex: 1,
         type: CardType.coreTakeaway,
-        contentFaIr: 'توانایی انسان‌ها در همکاری انعطاف‌پذیر در گروه‌های بزرگ، ناشی از تخیل و افسانه‌های مشترک است.',
+        contentFaIr: 'توانایی انسان‌ها در همکاری انعطاف‌پذیر در گروه‌های بزرگ، ناشی از تخیل و داستان‌های مشترک است.',
         contentFaAf: 'توانایی انسان‌ها در همکاری انعطاف‌پذیر در گروه‌های بزرگ، ناشی از تخیل و داستان‌های مشترک است.',
         contentEnUs: 'Sapiens rule the world because we are the only animal that can cooperate flexibly in large numbers.',
         audioStartMs: 0,
@@ -180,9 +187,9 @@ final List<BookSummary> sampleBookSummaries = [
     ],
   ),
 
-  // Saved for Later
+  // 7. Essentialism
   BookSummary(
-    summaryId: 'essentialism_06',
+    summaryId: 'essentialism_07',
     titleFaIr: 'اصل‌گرایی',
     titleFaAf: 'اصل‌گرایی',
     titleEnUs: 'Essentialism: The Disciplined Pursuit of Less',
@@ -190,14 +197,14 @@ final List<BookSummary> sampleBookSummaries = [
     coverImageUrl: 'https://images.unsplash.com/photo-1457369804613-52c61a468e7d?auto=format&fit=crop&w=600&q=80',
     category: 'Self-Improvement',
     totalReadingMinutes: 4,
-    tags: ['Focus', 'Essentialism', 'Life'],
+    tags: ['Self-Improvement', 'Productivity'],
     progress: 0.0,
     isPickedForYou: false,
     isSavedForLater: true,
     cards: [
       const TakeawayCard(
         cardId: 'ess_card_1',
-        summaryId: 'essentialism_06',
+        summaryId: 'essentialism_07',
         cardIndex: 1,
         type: CardType.coreTakeaway,
         contentFaIr: 'اصل‌گرایی یعنی انجام دادن کارهای کمتر، اما به روشی بسیار بهتر.',
@@ -205,6 +212,64 @@ final List<BookSummary> sampleBookSummaries = [
         contentEnUs: 'Essentialism is not about how to get more things done; it is about how to get the right things done.',
         audioStartMs: 0,
         audioEndMs: 12000,
+      ),
+    ],
+  ),
+
+  // 8. Zero to One
+  BookSummary(
+    summaryId: 'zero_to_one_08',
+    titleFaIr: 'صفر به یک',
+    titleFaAf: 'صفر به یک',
+    titleEnUs: 'Zero to One',
+    originalAuthor: 'Peter Thiel',
+    coverImageUrl: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=600&q=80',
+    category: 'Leadership',
+    totalReadingMinutes: 5,
+    tags: ['Leadership', 'Business', 'Startups'],
+    progress: 0.0,
+    isPickedForYou: false,
+    isSavedForLater: true,
+    cards: [
+      const TakeawayCard(
+        cardId: 'zto_card_1',
+        summaryId: 'zero_to_one_08',
+        cardIndex: 1,
+        type: CardType.coreTakeaway,
+        contentFaIr: 'بهترین شرکت‌ها ارزش نوینی می‌آفرینند نه اینکه کارهای قبلی را تکرار کنند.',
+        contentFaAf: 'بهترین شرکت‌ها ارزش جدیدی می‌سازند نه اینکه کارهای گذشته را کاپی کنند.',
+        contentEnUs: 'Doing what we already know how to do takes the world from 1 to n. Adding something new takes us from 0 to 1.',
+        audioStartMs: 0,
+        audioEndMs: 15000,
+      ),
+    ],
+  ),
+
+  // 9. Mindset
+  BookSummary(
+    summaryId: 'mindset_09',
+    titleFaIr: ' طرز فکر',
+    titleFaAf: 'طرز فکر',
+    titleEnUs: 'Mindset: The New Psychology of Success',
+    originalAuthor: 'Carol S. Dweck',
+    coverImageUrl: 'https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=600&q=80',
+    category: 'Psychology',
+    totalReadingMinutes: 4,
+    tags: ['Psychology', 'Mindset', 'Growth'],
+    progress: 0.50,
+    isPickedForYou: false,
+    isSavedForLater: true,
+    cards: [
+      const TakeawayCard(
+        cardId: 'mind_card_1',
+        summaryId: 'mindset_09',
+        cardIndex: 1,
+        type: CardType.coreTakeaway,
+        contentFaIr: 'افراد دارای طرز فکر رشد معتقدند استعداد با تلاش و یادگیری رشد می‌کند.',
+        contentFaAf: 'افرادی که طرز فکر رشد دارند معتقدند توانمندی با کوشیدن و یادگیری انکشاف می‌یابد.',
+        contentEnUs: 'In a growth mindset, challenges are seen as opportunities to grow rather than obstacles.',
+        audioStartMs: 0,
+        audioEndMs: 14000,
       ),
     ],
   ),

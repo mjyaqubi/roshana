@@ -4,6 +4,7 @@ import 'package:provider/provider.dart';
 import '../../../../core/i18n/app_locale.dart';
 import '../../../../core/i18n/font_resolver.dart';
 import '../../domain/entities/book_summary.dart';
+import '../../domain/entities/category_item.dart';
 import '../notifiers/category_notifier.dart';
 import '../pages/category_selection_page.dart';
 
@@ -26,17 +27,12 @@ class BookSectionsWidget extends StatelessWidget {
     final langCode = currentLocale.locale.languageCode;
     final isEn = langCode == 'en';
     final categoryNotifier = Provider.of<CategoryNotifier>(context);
-    final selectedCategoryIds = categoryNotifier.selectedCategoryIds;
+    final selectedCategories = categoryNotifier.categories.where((c) => c.isSelected).toList();
 
     // Section 1: Picked for you
     final pickedForYou = summaries.where((b) => b.isPickedForYou).toList();
     // Section 2: Continue Reading (In Progress)
     final inProgress = summaries.where((b) => b.isInProgress).toList();
-    // Section 3: Selected Categories (Filtered by selected category IDs)
-    final categoryBooks = summaries.where((b) {
-      return selectedCategoryIds.contains(b.category) ||
-          b.tags.any((tag) => selectedCategoryIds.contains(tag));
-    }).toList();
     // Section 4: Saved for later
     final savedForLater = summaries.where((b) => b.isSavedForLater).toList();
 
@@ -47,7 +43,7 @@ class BookSectionsWidget extends StatelessWidget {
         if (pickedForYou.isNotEmpty)
           _BookHorizontalSection(
             title: isEn ? 'Picked for you' : 'پیشنهاد شده برای شما',
-            subtitle: isEn ? 'Top picks for you' : 'بر اساس علایق شما',
+            subtitle: isEn ? 'Top picks based on your interests' : 'بر اساس برترین‌های مورد علاقه شما',
             books: pickedForYou,
             selectedSummary: selectedSummary,
             currentLocale: currentLocale,
@@ -59,7 +55,7 @@ class BookSectionsWidget extends StatelessWidget {
         if (inProgress.isNotEmpty)
           _BookHorizontalSection(
             title: isEn ? 'Continue Reading' : 'ادامه مطالعه',
-            subtitle: isEn ? 'In progress' : 'کتاب‌های نیمه‌تمام اخیر',
+            subtitle: isEn ? 'Recent books in progress' : 'کتاب‌های نیمه‌تمام اخیر شما',
             books: inProgress,
             selectedSummary: selectedSummary,
             currentLocale: currentLocale,
@@ -67,57 +63,21 @@ class BookSectionsWidget extends StatelessWidget {
             showProgress: true,
           ),
 
-        // Section 3: From Your Selected Categories (With Change Button!)
-        _BookHorizontalSection(
-          title: isEn ? 'From Your Categories' : 'بر اساس دسته‌بندی‌های شما',
+        // Section 3: Categories You're Interested In (Boxes with Icon & Name)
+        _CategoryBoxSection(
+          title: isEn ? "Categories You're Interested In" : "دسته‌بندی‌های مورد علاقه شما",
           subtitle: isEn
-              ? '${selectedCategoryIds.length} categories active'
-              : '${selectedCategoryIds.length} دسته‌بندی فعال',
-          books: categoryBooks.isNotEmpty ? categoryBooks : summaries,
-          selectedSummary: selectedSummary,
+              ? '${selectedCategories.length} topics selected'
+              : '${selectedCategories.length} موضوع فعال',
+          selectedCategories: selectedCategories,
           currentLocale: currentLocale,
-          onBookSelected: onBookSelected,
-          showProgress: false,
-          actionButton: GestureDetector(
-            onTap: () {
-              HapticFeedback.selectionClick();
-              Navigator.of(context).push(
-                MaterialPageRoute(
-                  builder: (context) => CategorySelectionPage(currentLocale: currentLocale),
-                ),
-              );
-            },
-            child: Container(
-              padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 4),
-              decoration: BoxDecoration(
-                color: const Color(0xFFF59E0B).withValues(alpha: 0.15),
-                borderRadius: BorderRadius.circular(12),
-                border: Border.all(color: const Color(0xFFF59E0B).withValues(alpha: 0.4)),
-              ),
-              child: Row(
-                children: [
-                  const Icon(Icons.tune_rounded, size: 14, color: Color(0xFFF59E0B)),
-                  const SizedBox(width: 4),
-                  Text(
-                    isEn ? 'Edit' : 'تغییر',
-                    style: RoshanaTypography.getTextStyle(
-                      currentLocale: currentLocale,
-                      fontSize: 12,
-                      fontWeight: FontWeight.bold,
-                      color: const Color(0xFFF59E0B),
-                    ),
-                  ),
-                ],
-              ),
-            ),
-          ),
         ),
 
         // Section 4: Saved for later
         if (savedForLater.isNotEmpty)
           _BookHorizontalSection(
             title: isEn ? 'Saved for later' : 'ذخیره‌شده برای بعد',
-            subtitle: isEn ? 'Your reading list' : 'فهرست نشان‌شده شما',
+            subtitle: isEn ? 'Your bookmarked library' : 'فهرست نشان‌شده شما',
             books: savedForLater,
             selectedSummary: selectedSummary,
             currentLocale: currentLocale,
@@ -129,6 +89,210 @@ class BookSectionsWidget extends StatelessWidget {
   }
 }
 
+/// Horizontal Category Box Slider (Displays Icon + Category Name in a box)
+class _CategoryBoxSection extends StatelessWidget {
+  final String title;
+  final String subtitle;
+  final List<CategoryItem> selectedCategories;
+  final RoshanaLocale currentLocale;
+
+  const _CategoryBoxSection({
+    required this.title,
+    required this.subtitle,
+    required this.selectedCategories,
+    required this.currentLocale,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    final langCode = currentLocale.locale.languageCode;
+    final isEn = langCode == 'en';
+
+    return Padding(
+      padding: const EdgeInsets.only(bottom: 20),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          // Header with Edit Button
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 20),
+            child: Row(
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Text(
+                      title,
+                      style: RoshanaTypography.getTextStyle(
+                        currentLocale: currentLocale,
+                        fontSize: 16,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
+                    ),
+                    Text(
+                      subtitle,
+                      style: RoshanaTypography.getTextStyle(
+                        currentLocale: currentLocale,
+                        fontSize: 11,
+                        color: Colors.white54,
+                      ),
+                    ),
+                  ],
+                ),
+                GestureDetector(
+                  onTap: () {
+                    HapticFeedback.selectionClick();
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => CategorySelectionPage(currentLocale: currentLocale),
+                      ),
+                    );
+                  },
+                  child: Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 5),
+                    decoration: BoxDecoration(
+                      color: const Color(0xFFF59E0B).withValues(alpha: 0.15),
+                      borderRadius: BorderRadius.circular(12),
+                      border: Border.all(color: const Color(0xFFF59E0B).withValues(alpha: 0.4)),
+                    ),
+                    child: Row(
+                      children: [
+                        const Icon(Icons.tune_rounded, size: 14, color: Color(0xFFF59E0B)),
+                        const SizedBox(width: 4),
+                        Text(
+                          isEn ? 'Edit' : 'تغییر',
+                          style: RoshanaTypography.getTextStyle(
+                            currentLocale: currentLocale,
+                            fontSize: 12,
+                            fontWeight: FontWeight.bold,
+                            color: const Color(0xFFF59E0B),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                ),
+              ],
+            ),
+          ),
+          const SizedBox(height: 12),
+
+          // Draggable Horizontal List of Category Boxes
+          SizedBox(
+            height: 60,
+            child: ListView.builder(
+              scrollDirection: Axis.horizontal,
+              physics: const BouncingScrollPhysics(),
+              padding: const EdgeInsets.symmetric(horizontal: 16),
+              itemCount: selectedCategories.isEmpty ? 1 : selectedCategories.length,
+              itemBuilder: (context, index) {
+                if (selectedCategories.isEmpty) {
+                  return GestureDetector(
+                    onTap: () {
+                      Navigator.of(context).push(
+                        MaterialPageRoute(
+                          builder: (context) => CategorySelectionPage(currentLocale: currentLocale),
+                        ),
+                      );
+                    },
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                      decoration: BoxDecoration(
+                        color: const Color(0xFF1E293B),
+                        borderRadius: BorderRadius.circular(16),
+                        border: Border.all(color: Colors.white24),
+                      ),
+                      child: Row(
+                        children: [
+                          const Icon(Icons.add_circle_outline_rounded, color: Color(0xFFF59E0B)),
+                          const SizedBox(width: 8),
+                          Text(
+                            isEn ? 'Select Categories' : 'انتخاب دسته‌بندی‌ها',
+                            style: const TextStyle(color: Colors.white70, fontSize: 13),
+                          ),
+                        ],
+                      ),
+                    ),
+                  );
+                }
+
+                final category = selectedCategories[index];
+
+                return GestureDetector(
+                  onTap: () {
+                    HapticFeedback.selectionClick();
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => CategorySelectionPage(currentLocale: currentLocale),
+                      ),
+                    );
+                  },
+                  child: Container(
+                    margin: const EdgeInsets.only(right: 12),
+                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                    decoration: BoxDecoration(
+                      gradient: LinearGradient(
+                        colors: [
+                          const Color(0xFF1E293B),
+                          const Color(0xFF0F172A).withValues(alpha: 0.9),
+                        ],
+                        begin: Alignment.topLeft,
+                        end: Alignment.bottomRight,
+                      ),
+                      borderRadius: BorderRadius.circular(16),
+                      border: Border.all(
+                        color: const Color(0xFFF59E0B).withValues(alpha: 0.3),
+                        width: 1.2,
+                      ),
+                      boxShadow: [
+                        BoxShadow(
+                          color: const Color(0xFFF59E0B).withValues(alpha: 0.1),
+                          blurRadius: 8,
+                          spreadRadius: 1,
+                        ),
+                      ],
+                    ),
+                    child: Row(
+                      mainAxisSize: MainAxisSize.min,
+                      children: [
+                        Container(
+                          padding: const EdgeInsets.all(6),
+                          decoration: BoxDecoration(
+                            color: const Color(0xFFF59E0B).withValues(alpha: 0.15),
+                            shape: BoxShape.circle,
+                          ),
+                          child: Icon(
+                            category.icon,
+                            color: const Color(0xFFF59E0B),
+                            size: 18,
+                          ),
+                        ),
+                        const SizedBox(width: 10),
+                        Text(
+                          category.getLocalizedName(langCode),
+                          style: RoshanaTypography.getTextStyle(
+                            currentLocale: currentLocale,
+                            fontSize: 13,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                );
+              },
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+}
+
+/// Horizontal Book Cover Slider
 class _BookHorizontalSection extends StatelessWidget {
   final String title;
   final String subtitle;
@@ -137,7 +301,6 @@ class _BookHorizontalSection extends StatelessWidget {
   final RoshanaLocale currentLocale;
   final ValueChanged<BookSummary> onBookSelected;
   final bool showProgress;
-  final Widget? actionButton;
 
   const _BookHorizontalSection({
     required this.title,
@@ -147,7 +310,6 @@ class _BookHorizontalSection extends StatelessWidget {
     required this.currentLocale,
     required this.onBookSelected,
     required this.showProgress,
-    this.actionButton,
   });
 
   @override
@@ -185,16 +347,13 @@ class _BookHorizontalSection extends StatelessWidget {
                     ),
                   ],
                 ),
-                if (actionButton != null)
-                  actionButton!
-                else
-                  Icon(
-                    currentLocale.direction == TextDirection.rtl
-                        ? Icons.arrow_back_ios_new_rounded
-                        : Icons.arrow_forward_ios_rounded,
-                    size: 13,
-                    color: const Color(0xFFF59E0B),
-                  ),
+                Icon(
+                  currentLocale.direction == TextDirection.rtl
+                      ? Icons.arrow_back_ios_new_rounded
+                      : Icons.arrow_forward_ios_rounded,
+                  size: 13,
+                  color: const Color(0xFFF59E0B),
+                ),
               ],
             ),
           ),
