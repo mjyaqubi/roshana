@@ -15,7 +15,7 @@ final List<BookSummary> sampleBookSummaries = [
     tags: ['Habits', 'Productivity', 'Self-Improvement'],
     progress: 0.65,
     isPickedForYou: true,
-    isSavedForLater: false,
+    isSavedForLater: true,
     cards: [
       const TakeawayCard(
         cardId: 'ah_card_1',
@@ -55,7 +55,7 @@ final List<BookSummary> sampleBookSummaries = [
     tags: ['Psychology', 'Mind', 'Decision Making'],
     progress: 0.40,
     isPickedForYou: true,
-    isSavedForLater: false,
+    isSavedForLater: true,
     cards: [
       const TakeawayCard(
         cardId: 'tfs_card_1',
@@ -113,7 +113,7 @@ final List<BookSummary> sampleBookSummaries = [
     tags: ['Finance', 'Wealth', 'Behavior'],
     progress: 0.80,
     isPickedForYou: true,
-    isSavedForLater: false,
+    isSavedForLater: true,
     cards: [
       const TakeawayCard(
         cardId: 'pom_card_1',
@@ -142,7 +142,7 @@ final List<BookSummary> sampleBookSummaries = [
     tags: ['Leadership', 'Business', 'Motivation'],
     progress: 0.15,
     isPickedForYou: true,
-    isSavedForLater: false,
+    isSavedForLater: true,
     cards: [
       const TakeawayCard(
         cardId: 'sww_card_1',
@@ -169,8 +169,8 @@ final List<BookSummary> sampleBookSummaries = [
     category: 'History',
     totalReadingMinutes: 6,
     tags: ['History', 'Culture', 'Evolution'],
-    progress: 0.0,
-    isPickedForYou: false,
+    progress: 0.35,
+    isPickedForYou: true,
     isSavedForLater: true,
     cards: [
       const TakeawayCard(
@@ -198,8 +198,8 @@ final List<BookSummary> sampleBookSummaries = [
     category: 'Self-Improvement',
     totalReadingMinutes: 4,
     tags: ['Self-Improvement', 'Productivity'],
-    progress: 0.0,
-    isPickedForYou: false,
+    progress: 0.50,
+    isPickedForYou: true,
     isSavedForLater: true,
     cards: [
       const TakeawayCard(
@@ -227,8 +227,8 @@ final List<BookSummary> sampleBookSummaries = [
     category: 'Leadership',
     totalReadingMinutes: 5,
     tags: ['Leadership', 'Business', 'Startups'],
-    progress: 0.0,
-    isPickedForYou: false,
+    progress: 0.70,
+    isPickedForYou: true,
     isSavedForLater: true,
     cards: [
       const TakeawayCard(
@@ -248,7 +248,7 @@ final List<BookSummary> sampleBookSummaries = [
   // 9. Mindset
   BookSummary(
     summaryId: 'mindset_09',
-    titleFaIr: ' طرز فکر',
+    titleFaIr: 'طرز فکر',
     titleFaAf: 'طرز فکر',
     titleEnUs: 'Mindset: The New Psychology of Success',
     originalAuthor: 'Carol S. Dweck',
@@ -256,8 +256,8 @@ final List<BookSummary> sampleBookSummaries = [
     category: 'Psychology',
     totalReadingMinutes: 4,
     tags: ['Psychology', 'Mindset', 'Growth'],
-    progress: 0.50,
-    isPickedForYou: false,
+    progress: 0.90,
+    isPickedForYou: true,
     isSavedForLater: true,
     cards: [
       const TakeawayCard(
@@ -270,6 +270,35 @@ final List<BookSummary> sampleBookSummaries = [
         contentEnUs: 'In a growth mindset, challenges are seen as opportunities to grow rather than obstacles.',
         audioStartMs: 0,
         audioEndMs: 14000,
+      ),
+    ],
+  ),
+
+  // 10. The 7 Habits of Highly Effective People
+  BookSummary(
+    summaryId: 'seven_habits_10',
+    titleFaIr: '۷ عادت مردمان موثر',
+    titleFaAf: '۷ عادت مردمان موثر',
+    titleEnUs: 'The 7 Habits of Highly Effective People',
+    originalAuthor: 'Stephen R. Covey',
+    coverImageUrl: 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=600&q=80',
+    category: 'Self-Improvement',
+    totalReadingMinutes: 6,
+    tags: ['Self-Improvement', 'Leadership', 'Habits'],
+    progress: 0.30,
+    isPickedForYou: true,
+    isSavedForLater: true,
+    cards: [
+      const TakeawayCard(
+        cardId: 'sh_card_1',
+        summaryId: 'seven_habits_10',
+        cardIndex: 1,
+        type: CardType.coreTakeaway,
+        contentFaIr: 'با در نظر گرفتن هدف نهایی شروع کنید؛ اولویت با کارهای مهم است نه اضطراری.',
+        contentFaAf: 'با در نظر داشت هدف نهایی آغاز کنید؛ اولویت با کارهای مهم است نه اضطراری.',
+        contentEnUs: 'Begin with the end in mind and put first things first to achieve personal mastery.',
+        audioStartMs: 0,
+        audioEndMs: 16000,
       ),
     ],
   ),
