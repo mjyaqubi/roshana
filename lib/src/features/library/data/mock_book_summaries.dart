@@ -2,6 +2,7 @@ import '../domain/entities/book_summary.dart';
 import '../../reader_player/domain/entities/takeaway_card.dart';
 
 final List<BookSummary> sampleBookSummaries = [
+  // Picked for You & In Progress
   BookSummary(
     summaryId: 'atomic_habits_01',
     titleFaIr: 'عادت‌های اتمی',
@@ -12,6 +13,9 @@ final List<BookSummary> sampleBookSummaries = [
     category: 'Self-Improvement',
     totalReadingMinutes: 4,
     tags: ['Habits', 'Productivity', 'Psychology'],
+    progress: 0.65, // 65% in progress
+    isPickedForYou: true,
+    isSavedForLater: false,
     cards: [
       const TakeawayCard(
         cardId: 'ah_card_1',
@@ -48,6 +52,8 @@ final List<BookSummary> sampleBookSummaries = [
       ),
     ],
   ),
+
+  // Picked for You
   BookSummary(
     summaryId: 'thinking_fast_slow_02',
     titleFaIr: 'تفکر، سریع و کند',
@@ -58,6 +64,9 @@ final List<BookSummary> sampleBookSummaries = [
     category: 'Psychology',
     totalReadingMinutes: 5,
     tags: ['Mind', 'Decision Making', 'Cognition'],
+    progress: 0.40, // 40% in progress
+    isPickedForYou: true,
+    isSavedForLater: false,
     cards: [
       const TakeawayCard(
         cardId: 'tfs_card_1',
@@ -80,6 +89,122 @@ final List<BookSummary> sampleBookSummaries = [
         contentEnUs: 'Cognitive biases arise when we overly rely on System 1 for complex judgments.',
         audioStartMs: 15000,
         audioEndMs: 30000,
+      ),
+    ],
+  ),
+
+  // Picked for You & Saved for Later
+  BookSummary(
+    summaryId: 'deep_work_03',
+    titleFaIr: 'کار عمیق',
+    titleFaAf: 'کار عمیق',
+    titleEnUs: 'Deep Work',
+    originalAuthor: 'Cal Newport',
+    coverImageUrl: 'https://images.unsplash.com/photo-1499750310107-5fef28a66643?auto=format&fit=crop&w=600&q=80',
+    category: 'Productivity',
+    totalReadingMinutes: 4,
+    tags: ['Focus', 'Productivity', 'Success'],
+    progress: 0.0,
+    isPickedForYou: true,
+    isSavedForLater: true,
+    cards: [
+      const TakeawayCard(
+        cardId: 'dw_card_1',
+        summaryId: 'deep_work_03',
+        cardIndex: 1,
+        type: CardType.coreTakeaway,
+        contentFaIr: 'توانایی تمرکز بدون حواس‌پرتی روی یک کار دشوار، مهارت ابرقدرت قرن بیست و یکم است.',
+        contentFaAf: 'توانایی تمرکز بدون حواس‌پرتی روی یک کار دشوار، مهارت ابرقدرت قرن بیست و یکم است.',
+        contentEnUs: 'Deep work is the ability to focus without distraction on a cognitively demanding task.',
+        audioStartMs: 0,
+        audioEndMs: 14000,
+      ),
+    ],
+  ),
+
+  // In Progress
+  BookSummary(
+    summaryId: 'psychology_of_money_04',
+    titleFaIr: 'روانشناسی پول',
+    titleFaAf: 'روانشناسی پول',
+    titleEnUs: 'The Psychology of Money',
+    originalAuthor: 'Morgan Housel',
+    coverImageUrl: 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=600&q=80',
+    category: 'Finance',
+    totalReadingMinutes: 5,
+    tags: ['Wealth', 'Finance', 'Behavior'],
+    progress: 0.80, // 80% in progress
+    isPickedForYou: false,
+    isSavedForLater: false,
+    cards: [
+      const TakeawayCard(
+        cardId: 'pom_card_1',
+        summaryId: 'psychology_of_money_04',
+        cardIndex: 1,
+        type: CardType.coreTakeaway,
+        contentFaIr: 'موفقیت مالی ربط چندانی به هوش شما ندارد، بلکه با رفتار و انضباط شما در ارتباط است.',
+        contentFaAf: 'موفقیت مالی ارتباط چندانی به هوش شما ندارد، بلکه با رفتار و انضباط شما ارتباط دارد.',
+        contentEnUs: 'Doing well with money has a little to do with how smart you are and a lot to do with how you behave.',
+        audioStartMs: 0,
+        audioEndMs: 16000,
+      ),
+    ],
+  ),
+
+  // Saved for Later
+  BookSummary(
+    summaryId: 'sapiens_05',
+    titleFaIr: 'انسان عاقل (ساپینس)',
+    titleFaAf: 'انسان عاقل (ساپینس)',
+    titleEnUs: 'Sapiens: A Brief History of Humankind',
+    originalAuthor: 'Yuval Noah Harari',
+    coverImageUrl: 'https://images.unsplash.com/photo-1461360370896-922624d12aa1?auto=format&fit=crop&w=600&q=80',
+    category: 'History',
+    totalReadingMinutes: 6,
+    tags: ['History', 'Evolution', 'Humanity'],
+    progress: 0.0,
+    isPickedForYou: false,
+    isSavedForLater: true,
+    cards: [
+      const TakeawayCard(
+        cardId: 'sap_card_1',
+        summaryId: 'sapiens_05',
+        cardIndex: 1,
+        type: CardType.coreTakeaway,
+        contentFaIr: 'توانایی انسان‌ها در همکاری انعطاف‌پذیر در گروه‌های بزرگ، ناشی از تخیل و افسانه‌های مشترک است.',
+        contentFaAf: 'توانایی انسان‌ها در همکاری انعطاف‌پذیر در گروه‌های بزرگ، ناشی از تخیل و داستان‌های مشترک است.',
+        contentEnUs: 'Sapiens rule the world because we are the only animal that can cooperate flexibly in large numbers.',
+        audioStartMs: 0,
+        audioEndMs: 18000,
+      ),
+    ],
+  ),
+
+  // Saved for Later
+  BookSummary(
+    summaryId: 'essentialism_06',
+    titleFaIr: 'اصل‌گرایی',
+    titleFaAf: 'اصل‌گرایی',
+    titleEnUs: 'Essentialism: The Disciplined Pursuit of Less',
+    originalAuthor: 'Greg McKeown',
+    coverImageUrl: 'https://images.unsplash.com/photo-1457369804613-52c61a468e7d?auto=format&fit=crop&w=600&q=80',
+    category: 'Self-Improvement',
+    totalReadingMinutes: 4,
+    tags: ['Focus', 'Essentialism', 'Life'],
+    progress: 0.0,
+    isPickedForYou: false,
+    isSavedForLater: true,
+    cards: [
+      const TakeawayCard(
+        cardId: 'ess_card_1',
+        summaryId: 'essentialism_06',
+        cardIndex: 1,
+        type: CardType.coreTakeaway,
+        contentFaIr: 'اصل‌گرایی یعنی انجام دادن کارهای کمتر، اما به روشی بسیار بهتر.',
+        contentFaAf: 'اصل‌گرایی یعنی انجام دادن کارهای کمتر، اما به روشی بسیار بهتر.',
+        contentEnUs: 'Essentialism is not about how to get more things done; it is about how to get the right things done.',
+        audioStartMs: 0,
+        audioEndMs: 12000,
       ),
     ],
   ),

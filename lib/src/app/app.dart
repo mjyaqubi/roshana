@@ -8,6 +8,7 @@ import '../core/theme/app_theme.dart';
 import '../features/gamification/presentation/widgets/streak_header_widget.dart';
 import '../features/library/data/mock_book_summaries.dart';
 import '../features/library/domain/entities/book_summary.dart';
+import '../features/library/presentation/widgets/book_sections_widget.dart';
 import '../features/reader_player/presentation/widgets/card_deck_reader.dart';
 
 class RoshanaApp extends StatelessWidget {
@@ -74,7 +75,6 @@ class _RoshanaHomeScreenState extends State<RoshanaHomeScreen> {
   Widget build(BuildContext context) {
     final localeNotifier = Provider.of<LocaleNotifier>(context, listen: false);
     final langCode = widget.roshanaLocale.locale.languageCode;
-    final countryCode = widget.roshanaLocale.locale.countryCode;
 
     return Scaffold(
       appBar: AppBar(
@@ -179,72 +179,48 @@ class _RoshanaHomeScreenState extends State<RoshanaHomeScreen> {
         ],
       ),
       body: SafeArea(
-        child: Column(
-          children: [
-            // Streak Component
-            Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-              child: StreakHeaderWidget(
-                streakDays: 7,
-                hasStreakFreeze: true,
-                currentLocale: widget.roshanaLocale,
+        child: SingleChildScrollView(
+          physics: const BouncingScrollPhysics(),
+          child: Column(
+            children: [
+              // Streak Component
+              Padding(
+                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                child: StreakHeaderWidget(
+                  streakDays: 7,
+                  hasStreakFreeze: true,
+                  currentLocale: widget.roshanaLocale,
+                ),
               ),
-            ),
 
-            // Book Selector Pills
-            SizedBox(
-              height: 44,
-              child: ListView.builder(
-                scrollDirection: Axis.horizontal,
-                padding: const EdgeInsets.symmetric(horizontal: 16),
-                itemCount: sampleBookSummaries.length,
-                itemBuilder: (context, index) {
-                  final summary = sampleBookSummaries[index];
-                  final isSelected = summary.summaryId == _selectedSummary.summaryId;
-                  final summaryTitle = summary.getLocalizedTitle(langCode, countryCode);
-
-                  return GestureDetector(
-                    onTap: () {
-                      setState(() {
-                        _selectedSummary = summary;
-                      });
-                    },
-                    child: AnimatedContainer(
-                      duration: const Duration(milliseconds: 200),
-                      margin: const EdgeInsets.only(right: 8),
-                      padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                      decoration: BoxDecoration(
-                        color: isSelected ? const Color(0xFFF59E0B) : const Color(0xFF1E293B),
-                        borderRadius: BorderRadius.circular(20),
-                        border: Border.all(
-                          color: isSelected ? const Color(0xFFF59E0B) : Colors.white12,
-                        ),
-                      ),
-                      child: Center(
-                        child: Text(
-                          summaryTitle,
-                          style: RoshanaTypography.getTextStyle(
-                            currentLocale: widget.roshanaLocale,
-                            fontSize: 13,
-                            fontWeight: isSelected ? FontWeight.bold : FontWeight.normal,
-                            color: isSelected ? Colors.black : Colors.white70,
-                          ),
-                        ),
-                      ),
-                    ),
-                  );
+              // 3 Draggable Book Cover Sections
+              BookSectionsWidget(
+                summaries: sampleBookSummaries,
+                selectedSummary: _selectedSummary,
+                currentLocale: widget.roshanaLocale,
+                onBookSelected: (summary) {
+                  setState(() {
+                    _selectedSummary = summary;
+                  });
                 },
               ),
-            ),
 
-            // Card Deck Reader Interface
-            Expanded(
-              child: CardDeckReader(
-                bookSummary: _selectedSummary,
-                currentLocale: widget.roshanaLocale,
+              const Divider(color: Colors.white12, indent: 20, endIndent: 20),
+              const SizedBox(height: 8),
+
+              // Card Deck Reader Interface for Selected Book
+              SizedBox(
+                height: 520,
+                child: CardDeckReader(
+                  key: ValueKey(_selectedSummary.summaryId),
+                  bookSummary: _selectedSummary,
+                  currentLocale: widget.roshanaLocale,
+                ),
               ),
-            ),
-          ],
+
+              const SizedBox(height: 20),
+            ],
+          ),
         ),
       ),
       bottomNavigationBar: BottomNavigationBar(

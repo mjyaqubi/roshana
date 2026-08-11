@@ -11,6 +11,9 @@ class BookSummary {
   final int totalReadingMinutes;
   final List<String> tags;
   final List<TakeawayCard> cards;
+  final double progress; // 0.0 to 1.0 (e.g. 0.65 = 65% read/listened)
+  final bool isPickedForYou;
+  final bool isSavedForLater;
 
   const BookSummary({
     required this.summaryId,
@@ -23,7 +26,12 @@ class BookSummary {
     required this.totalReadingMinutes,
     required this.tags,
     required this.cards,
+    this.progress = 0.0,
+    this.isPickedForYou = false,
+    this.isSavedForLater = false,
   });
+
+  bool get isInProgress => progress > 0.0 && progress < 1.0;
 
   String getLocalizedTitle(String languageCode, String? countryCode) {
     if (languageCode == 'en') return titleEnUs;
