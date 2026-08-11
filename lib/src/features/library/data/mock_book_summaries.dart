@@ -1,8 +1,9 @@
 import '../domain/entities/book_summary.dart';
+import '../domain/entities/highlight_item.dart';
 import '../../reader_player/domain/entities/takeaway_card.dart';
 
 final List<BookSummary> sampleBookSummaries = [
-  // 1. Atomic Habits
+  // 1. Atomic Habits (In Progress)
   BookSummary(
     summaryId: 'atomic_habits_01',
     titleFaIr: 'عادت‌های اتمی',
@@ -42,7 +43,7 @@ final List<BookSummary> sampleBookSummaries = [
     ],
   ),
 
-  // 2. Thinking, Fast and Slow
+  // 2. Thinking, Fast and Slow (Completed & Saved for Later!)
   BookSummary(
     summaryId: 'thinking_fast_slow_02',
     titleFaIr: 'تفکر، سریع و کند',
@@ -53,7 +54,7 @@ final List<BookSummary> sampleBookSummaries = [
     category: 'Psychology',
     totalReadingMinutes: 5,
     tags: ['Psychology', 'Mind', 'Decision Making'],
-    progress: 0.40,
+    progress: 1.0, // COMPLETED
     isPickedForYou: true,
     isSavedForLater: true,
     cards: [
@@ -71,7 +72,7 @@ final List<BookSummary> sampleBookSummaries = [
     ],
   ),
 
-  // 3. Deep Work
+  // 3. Deep Work (In Progress)
   BookSummary(
     summaryId: 'deep_work_03',
     titleFaIr: 'کار عمیق',
@@ -100,7 +101,7 @@ final List<BookSummary> sampleBookSummaries = [
     ],
   ),
 
-  // 4. The Psychology of Money
+  // 4. The Psychology of Money (Completed & Saved for Later!)
   BookSummary(
     summaryId: 'psychology_of_money_04',
     titleFaIr: 'روانشناسی پول',
@@ -111,7 +112,7 @@ final List<BookSummary> sampleBookSummaries = [
     category: 'Finance',
     totalReadingMinutes: 5,
     tags: ['Finance', 'Wealth', 'Behavior'],
-    progress: 0.80,
+    progress: 1.0, // COMPLETED
     isPickedForYou: true,
     isSavedForLater: true,
     cards: [
@@ -129,7 +130,7 @@ final List<BookSummary> sampleBookSummaries = [
     ],
   ),
 
-  // 5. Start With Why
+  // 5. Start With Why (In Progress)
   BookSummary(
     summaryId: 'start_with_why_05',
     titleFaIr: 'با چرا شروع کنید',
@@ -158,7 +159,7 @@ final List<BookSummary> sampleBookSummaries = [
     ],
   ),
 
-  // 6. Sapiens
+  // 6. Sapiens (Saved for Later)
   BookSummary(
     summaryId: 'sapiens_06',
     titleFaIr: 'انسان عاقل (ساپینس)',
@@ -169,7 +170,7 @@ final List<BookSummary> sampleBookSummaries = [
     category: 'History',
     totalReadingMinutes: 6,
     tags: ['History', 'Culture', 'Evolution'],
-    progress: 0.35,
+    progress: 0.0,
     isPickedForYou: true,
     isSavedForLater: true,
     cards: [
@@ -186,120 +187,34 @@ final List<BookSummary> sampleBookSummaries = [
       ),
     ],
   ),
+];
 
-  // 7. Essentialism
-  BookSummary(
-    summaryId: 'essentialism_07',
-    titleFaIr: 'اصل‌گرایی',
-    titleFaAf: 'اصل‌گرایی',
-    titleEnUs: 'Essentialism: The Disciplined Pursuit of Less',
-    originalAuthor: 'Greg McKeown',
-    coverImageUrl: 'https://images.unsplash.com/photo-1457369804613-52c61a468e7d?auto=format&fit=crop&w=600&q=80',
-    category: 'Self-Improvement',
-    totalReadingMinutes: 4,
-    tags: ['Self-Improvement', 'Productivity'],
-    progress: 0.50,
-    isPickedForYou: true,
-    isSavedForLater: true,
-    cards: [
-      const TakeawayCard(
-        cardId: 'ess_card_1',
-        summaryId: 'essentialism_07',
-        cardIndex: 1,
-        type: CardType.coreTakeaway,
-        contentFaIr: 'اصل‌گرایی یعنی انجام دادن کارهای کمتر، اما به روشی بسیار بهتر.',
-        contentFaAf: 'اصل‌گرایی یعنی انجام دادن کارهای کمتر، اما به روشی بسیار بهتر.',
-        contentEnUs: 'Essentialism is not about how to get more things done; it is about how to get the right things done.',
-        audioStartMs: 0,
-        audioEndMs: 12000,
-      ),
-    ],
+final List<HighlightItem> sampleHighlights = [
+  HighlightItem(
+    id: 'hl_1',
+    bookSummaryId: 'atomic_habits_01',
+    bookTitle: 'عادت‌های اتمی (Atomic Habits)',
+    author: 'James Clear',
+    cardText: 'شما به سطح اهدافتان صعود نمی‌کنید؛ بلکه به سطح سیستم‌هایتان سقوط می‌کنید.',
+    cardType: 'اصل بنیادی',
+    createdAt: DateTime.now().subtract(const Duration(days: 1)),
   ),
-
-  // 8. Zero to One
-  BookSummary(
-    summaryId: 'zero_to_one_08',
-    titleFaIr: 'صفر به یک',
-    titleFaAf: 'صفر به یک',
-    titleEnUs: 'Zero to One',
-    originalAuthor: 'Peter Thiel',
-    coverImageUrl: 'https://images.unsplash.com/photo-1522071820081-009f0129c71c?auto=format&fit=crop&w=600&q=80',
-    category: 'Leadership',
-    totalReadingMinutes: 5,
-    tags: ['Leadership', 'Business', 'Startups'],
-    progress: 0.70,
-    isPickedForYou: true,
-    isSavedForLater: true,
-    cards: [
-      const TakeawayCard(
-        cardId: 'zto_card_1',
-        summaryId: 'zero_to_one_08',
-        cardIndex: 1,
-        type: CardType.coreTakeaway,
-        contentFaIr: 'بهترین شرکت‌ها ارزش نوینی می‌آفرینند نه اینکه کارهای قبلی را تکرار کنند.',
-        contentFaAf: 'بهترین شرکت‌ها ارزش جدیدی می‌سازند نه اینکه کارهای گذشته را کاپی کنند.',
-        contentEnUs: 'Doing what we already know how to do takes the world from 1 to n. Adding something new takes us from 0 to 1.',
-        audioStartMs: 0,
-        audioEndMs: 15000,
-      ),
-    ],
+  HighlightItem(
+    id: 'hl_2',
+    bookSummaryId: 'thinking_fast_slow_02',
+    bookTitle: 'تفکر، سریع و کند (Thinking, Fast and Slow)',
+    author: 'Daniel Kahneman',
+    cardText: 'مغز ما از دو سیستم تصمیم‌گیری استفاده می‌کند: سیستم ۱ سریع و شهودی، سیستم ۲ کند و تحلیلی.',
+    cardType: 'دستآورد اصلی',
+    createdAt: DateTime.now().subtract(const Duration(days: 3)),
   ),
-
-  // 9. Mindset
-  BookSummary(
-    summaryId: 'mindset_09',
-    titleFaIr: 'طرز فکر',
-    titleFaAf: 'طرز فکر',
-    titleEnUs: 'Mindset: The New Psychology of Success',
-    originalAuthor: 'Carol S. Dweck',
-    coverImageUrl: 'https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=600&q=80',
-    category: 'Psychology',
-    totalReadingMinutes: 4,
-    tags: ['Psychology', 'Mindset', 'Growth'],
-    progress: 0.90,
-    isPickedForYou: true,
-    isSavedForLater: true,
-    cards: [
-      const TakeawayCard(
-        cardId: 'mind_card_1',
-        summaryId: 'mindset_09',
-        cardIndex: 1,
-        type: CardType.coreTakeaway,
-        contentFaIr: 'افراد دارای طرز فکر رشد معتقدند استعداد با تلاش و یادگیری رشد می‌کند.',
-        contentFaAf: 'افرادی که طرز فکر رشد دارند معتقدند توانمندی با کوشیدن و یادگیری انکشاف می‌یابد.',
-        contentEnUs: 'In a growth mindset, challenges are seen as opportunities to grow rather than obstacles.',
-        audioStartMs: 0,
-        audioEndMs: 14000,
-      ),
-    ],
-  ),
-
-  // 10. The 7 Habits of Highly Effective People
-  BookSummary(
-    summaryId: 'seven_habits_10',
-    titleFaIr: '۷ عادت مردمان موثر',
-    titleFaAf: '۷ عادت مردمان موثر',
-    titleEnUs: 'The 7 Habits of Highly Effective People',
-    originalAuthor: 'Stephen R. Covey',
-    coverImageUrl: 'https://images.unsplash.com/photo-1434030216411-0b793f4b4173?auto=format&fit=crop&w=600&q=80',
-    category: 'Self-Improvement',
-    totalReadingMinutes: 6,
-    tags: ['Self-Improvement', 'Leadership', 'Habits'],
-    progress: 0.30,
-    isPickedForYou: true,
-    isSavedForLater: true,
-    cards: [
-      const TakeawayCard(
-        cardId: 'sh_card_1',
-        summaryId: 'seven_habits_10',
-        cardIndex: 1,
-        type: CardType.coreTakeaway,
-        contentFaIr: 'با در نظر گرفتن هدف نهایی شروع کنید؛ اولویت با کارهای مهم است نه اضطراری.',
-        contentFaAf: 'با در نظر داشت هدف نهایی آغاز کنید؛ اولویت با کارهای مهم است نه اضطراری.',
-        contentEnUs: 'Begin with the end in mind and put first things first to achieve personal mastery.',
-        audioStartMs: 0,
-        audioEndMs: 16000,
-      ),
-    ],
+  HighlightItem(
+    id: 'hl_3',
+    bookSummaryId: 'psychology_of_money_04',
+    bookTitle: 'روانشناسی پول (The Psychology of Money)',
+    author: 'Morgan Housel',
+    cardText: 'موفقیت مالی ربط چندانی به هوش شما ندارد، بلکه با رفتار و انضباط شما در ارتباط است.',
+    cardType: 'دستآورد اصلی',
+    createdAt: DateTime.now().subtract(const Duration(days: 5)),
   ),
 ];

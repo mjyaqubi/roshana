@@ -11,7 +11,7 @@ class BookSummary {
   final int totalReadingMinutes;
   final List<String> tags;
   final List<TakeawayCard> cards;
-  final double progress; // 0.0 to 1.0 (e.g. 0.65 = 65% read/listened)
+  final double progress; // 0.0 to 1.0 (e.g. 1.0 = 100% completed)
   final bool isPickedForYou;
   final bool isSavedForLater;
 
@@ -32,6 +32,7 @@ class BookSummary {
   });
 
   bool get isInProgress => progress > 0.0 && progress < 1.0;
+  bool get isCompleted => progress >= 1.0;
 
   String getLocalizedTitle(String languageCode, String? countryCode) {
     if (languageCode == 'en') return titleEnUs;

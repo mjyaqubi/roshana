@@ -10,6 +10,7 @@ import '../features/gamification/presentation/widgets/streak_header_widget.dart'
 import '../features/library/data/mock_book_summaries.dart';
 import '../features/library/domain/entities/book_summary.dart';
 import '../features/library/presentation/notifiers/category_notifier.dart';
+import '../features/library/presentation/pages/library_page.dart';
 import '../features/library/presentation/widgets/book_sections_widget.dart';
 
 class RoshanaApp extends StatelessWidget {
@@ -183,37 +184,58 @@ class _RoshanaHomeScreenState extends State<RoshanaHomeScreen> {
           const SizedBox(width: 8),
         ],
       ),
-      body: SafeArea(
-        child: SingleChildScrollView(
-          physics: const AlwaysScrollableScrollPhysics(parent: BouncingScrollPhysics()),
-          child: Column(
-            children: [
-              // Daily Streak Header
-              Padding(
-                padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
-                child: StreakHeaderWidget(
-                  streakDays: 7,
-                  hasStreakFreeze: true,
-                  currentLocale: widget.roshanaLocale,
-                ),
-              ),
+      body: IndexedStack(
+        index: _selectedNavIndex,
+        children: [
+          // Tab Index 0: Discovery / Reader Page
+          SafeArea(
+            child: SingleChildScrollView(
+              physics: const AlwaysScrollableScrollPhysics(parent: BouncingScrollPhysics()),
+              child: Column(
+                children: [
+                  // Daily Streak Header
+                  Padding(
+                    padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+                    child: StreakHeaderWidget(
+                      streakDays: 7,
+                      hasStreakFreeze: true,
+                      currentLocale: widget.roshanaLocale,
+                    ),
+                  ),
 
-              // Draggable Book Cover & Category Sections
-              BookSectionsWidget(
-                summaries: sampleBookSummaries,
-                selectedSummary: _selectedSummary,
-                currentLocale: widget.roshanaLocale,
-                onBookSelected: (summary) {
-                  setState(() {
-                    _selectedSummary = summary;
-                  });
-                },
-              ),
+                  // Draggable Book Cover & Category Sections
+                  BookSectionsWidget(
+                    summaries: sampleBookSummaries,
+                    selectedSummary: _selectedSummary,
+                    currentLocale: widget.roshanaLocale,
+                    onBookSelected: (summary) {
+                      setState(() {
+                        _selectedSummary = summary;
+                      });
+                    },
+                  ),
 
-              const SizedBox(height: 24),
-            ],
+                  const SizedBox(height: 24),
+                ],
+              ),
+            ),
           ),
-        ),
+
+          // Tab Index 1: Library Page (Saved For Later, Completed Books, Highlights)
+          LibraryPage(currentLocale: widget.roshanaLocale),
+
+          // Tab Index 2: SRS Flashcards Deck
+          Center(
+            child: Text(
+              langCode == 'en' ? 'Spaced-Repetition SRS Deck' : 'مرور کارت‌های حافظه (SRS)',
+              style: RoshanaTypography.getTextStyle(
+                currentLocale: widget.roshanaLocale,
+                fontSize: 18,
+                color: Colors.white70,
+              ),
+            ),
+          ),
+        ],
       ),
       bottomNavigationBar: BottomNavigationBar(
         currentIndex: _selectedNavIndex,
