@@ -10,7 +10,6 @@ import '../features/library/data/mock_book_summaries.dart';
 import '../features/library/domain/entities/book_summary.dart';
 import '../features/library/presentation/notifiers/category_notifier.dart';
 import '../features/library/presentation/widgets/book_sections_widget.dart';
-import '../features/reader_player/presentation/widgets/card_deck_reader.dart';
 
 class RoshanaApp extends StatelessWidget {
   const RoshanaApp({super.key});
@@ -187,7 +186,7 @@ class _RoshanaHomeScreenState extends State<RoshanaHomeScreen> {
           physics: const BouncingScrollPhysics(),
           child: Column(
             children: [
-              // Streak Component
+              // Daily Streak Header
               Padding(
                 padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
                 child: StreakHeaderWidget(
@@ -197,7 +196,7 @@ class _RoshanaHomeScreenState extends State<RoshanaHomeScreen> {
                 ),
               ),
 
-              // 4 Draggable Book Cover Sections (Picked for You, Continue Reading, Category Picks, Saved for Later)
+              // Draggable Book Cover & Category Sections
               BookSectionsWidget(
                 summaries: sampleBookSummaries,
                 selectedSummary: _selectedSummary,
@@ -209,20 +208,7 @@ class _RoshanaHomeScreenState extends State<RoshanaHomeScreen> {
                 },
               ),
 
-              const Divider(color: Colors.white12, indent: 20, endIndent: 20),
-              const SizedBox(height: 8),
-
-              // Card Deck Reader Interface for Selected Book
-              SizedBox(
-                height: 520,
-                child: CardDeckReader(
-                  key: ValueKey(_selectedSummary.summaryId),
-                  bookSummary: _selectedSummary,
-                  currentLocale: widget.roshanaLocale,
-                ),
-              ),
-
-              const SizedBox(height: 20),
+              const SizedBox(height: 24),
             ],
           ),
         ),
@@ -241,7 +227,7 @@ class _RoshanaHomeScreenState extends State<RoshanaHomeScreen> {
           BottomNavigationBarItem(
             icon: const Icon(Icons.style_outlined),
             activeIcon: const Icon(Icons.style_rounded),
-            label: langCode == 'en' ? 'Reader' : 'خلاصه',
+            label: langCode == 'en' ? 'Explore' : 'کاوش',
           ),
           BottomNavigationBarItem(
             icon: const Icon(Icons.auto_stories_outlined),

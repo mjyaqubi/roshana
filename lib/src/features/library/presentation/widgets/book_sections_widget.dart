@@ -3,6 +3,7 @@ import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
 import '../../../../core/i18n/app_locale.dart';
 import '../../../../core/i18n/font_resolver.dart';
+import '../../../reader_player/presentation/pages/book_reader_page.dart';
 import '../../domain/entities/book_summary.dart';
 import '../../domain/entities/category_item.dart';
 import '../notifiers/category_notifier.dart';
@@ -375,6 +376,14 @@ class _BookHorizontalSection extends StatelessWidget {
                   onTap: () {
                     HapticFeedback.selectionClick();
                     onBookSelected(book);
+                    Navigator.of(context).push(
+                      MaterialPageRoute(
+                        builder: (context) => BookReaderPage(
+                          bookSummary: book,
+                          currentLocale: currentLocale,
+                        ),
+                      ),
+                    );
                   },
                   child: AnimatedContainer(
                     duration: const Duration(milliseconds: 200),
