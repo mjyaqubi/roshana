@@ -15,6 +15,17 @@ class BookSummary {
   final bool isPickedForYou;
   final bool isSavedForLater;
 
+  // Overview & Author metadata
+  final String highLevelSummaryFaIr;
+  final String highLevelSummaryFaAf;
+  final String highLevelSummaryEnUs;
+  final List<String> whatYouWillLearnFaIr;
+  final List<String> whatYouWillLearnFaAf;
+  final List<String> whatYouWillLearnEnUs;
+  final String aboutAuthorFaIr;
+  final String aboutAuthorFaAf;
+  final String aboutAuthorEnUs;
+
   const BookSummary({
     required this.summaryId,
     required this.titleFaIr,
@@ -29,6 +40,15 @@ class BookSummary {
     this.progress = 0.0,
     this.isPickedForYou = false,
     this.isSavedForLater = false,
+    this.highLevelSummaryFaIr = '',
+    this.highLevelSummaryFaAf = '',
+    this.highLevelSummaryEnUs = '',
+    this.whatYouWillLearnFaIr = const [],
+    this.whatYouWillLearnFaAf = const [],
+    this.whatYouWillLearnEnUs = const [],
+    this.aboutAuthorFaIr = '',
+    this.aboutAuthorFaAf = '',
+    this.aboutAuthorEnUs = '',
   });
 
   bool get isInProgress => progress > 0.0 && progress < 1.0;
@@ -38,5 +58,23 @@ class BookSummary {
     if (languageCode == 'en') return titleEnUs;
     if (languageCode == 'fa' && countryCode == 'AF') return titleFaAf;
     return titleFaIr;
+  }
+
+  String getLocalizedHighLevelSummary(String languageCode, String? countryCode) {
+    if (languageCode == 'en') return highLevelSummaryEnUs;
+    if (languageCode == 'fa' && countryCode == 'AF') return highLevelSummaryFaAf;
+    return highLevelSummaryFaIr;
+  }
+
+  List<String> getLocalizedWhatYouWillLearn(String languageCode, String? countryCode) {
+    if (languageCode == 'en') return whatYouWillLearnEnUs;
+    if (languageCode == 'fa' && countryCode == 'AF') return whatYouWillLearnFaAf;
+    return whatYouWillLearnFaIr;
+  }
+
+  String getLocalizedAboutAuthor(String languageCode, String? countryCode) {
+    if (languageCode == 'en') return aboutAuthorEnUs;
+    if (languageCode == 'fa' && countryCode == 'AF') return aboutAuthorFaAf;
+    return aboutAuthorFaIr;
   }
 }

@@ -3,7 +3,7 @@ import '../domain/entities/highlight_item.dart';
 import '../../reader_player/domain/entities/takeaway_card.dart';
 
 final List<BookSummary> sampleBookSummaries = [
-  // 1. Atomic Habits (In Progress)
+  // 1. Atomic Habits
   BookSummary(
     summaryId: 'atomic_habits_01',
     titleFaIr: 'عادت‌های اتمی',
@@ -17,6 +17,27 @@ final List<BookSummary> sampleBookSummaries = [
     progress: 0.65,
     isPickedForYou: true,
     isSavedForLater: true,
+    highLevelSummaryFaIr: 'کتاب عادت‌های اتمی راهنمایی جامع و کاربردی برای ایجاد عادت‌های خوب و ترک عادت‌های بد از طریق تغییرات کوچک و مستمر است.',
+    highLevelSummaryFaAf: 'کتاب عادت‌های اتمی یک رهنمود جامع و کاربردی برای ایجاد عادت‌های نیک و ترک عادت‌های ناپسند از طریق تغییرات کوچک و دوامدار است.',
+    highLevelSummaryEnUs: 'Atomic Habits provides a proven framework for improving every day through small, incremental 1% changes that compound over time.',
+    whatYouWillLearnFaIr: [
+      'چگونه سیستم‌هایی بسازید که تمرکز شما را روی روند کار نگه دارند، نه فقط اهداف انتزاعی.',
+      'طراحی محیط زیست شخصی برای آسان‌تر کردن رفتارهای مطلوب و سخت کردن رفتارهای نامطلوب.',
+      'استفاده از قانون ۴ مرحله‌ای عادت‌ها: اشاره، اشتیاق، پاسخ و پاداش.',
+    ],
+    whatYouWillLearnFaAf: [
+      'چگونه سیستم‌هایی بسازید که تمرکز شما را روی روند کار نگه دارند، نه فقط اهداف انتزاعی.',
+      'طراحی محیط شخصی برای آسان‌تر ساختن رفتارهای مطلوب و دشوار ساختن رفتارهای نامطلوب.',
+      'استفاده از قانون ۴ مرحله‌ای عادت‌ها: اشاره، اشتیاق، پاسخ و پاداش.',
+    ],
+    whatYouWillLearnEnUs: [
+      'How to build systems that focus on continuous processes rather than just goals.',
+      'How to design your environment to make good habits obvious and bad habits invisible.',
+      'The 4-step framework of habit formation: Cue, Craving, Response, and Reward.',
+    ],
+    aboutAuthorFaIr: 'جیمز کلیر نویسنده و سخنران برجسته آمریکایی در زمینه عادت‌ها و تصمیم‌گیری است که خبرنامه هفتگی او بیش از یک میلیون مشترک دارد.',
+    aboutAuthorFaAf: 'جیمز کلیر نویسنده و سخنران برجسته در عرصه عادت‌ها و تصمیم‌گیری است که خبرنامه وی بیش از یک میلیون خواننده دارد.',
+    aboutAuthorEnUs: 'James Clear is a renowned author and speaker focused on habits, decision-making, and continuous improvement.',
     cards: [
       const TakeawayCard(
         cardId: 'ah_card_1',
@@ -40,10 +61,21 @@ final List<BookSummary> sampleBookSummaries = [
         audioStartMs: 12000,
         audioEndMs: 25000,
       ),
+      const TakeawayCard(
+        cardId: 'ah_card_3',
+        summaryId: 'atomic_habits_01',
+        cardIndex: 3,
+        type: CardType.actionableInsight,
+        contentFaIr: 'برای ساختن یک عادت جدید، آن را آشکار، جذاب، ساده و رضایت‌بخش کنید.',
+        contentFaAf: 'برای ساختن یک عادت جدید، آن را هویدا، دلپذیر، آسان و خوشایند بسازید.',
+        contentEnUs: 'To build a lasting habit, make it obvious, attractive, easy, and satisfying.',
+        audioStartMs: 25000,
+        audioEndMs: 40000,
+      ),
     ],
   ),
 
-  // 2. Thinking, Fast and Slow (Completed & Saved for Later!)
+  // 2. Thinking, Fast and Slow
   BookSummary(
     summaryId: 'thinking_fast_slow_02',
     titleFaIr: 'تفکر، سریع و کند',
@@ -54,9 +86,30 @@ final List<BookSummary> sampleBookSummaries = [
     category: 'Psychology',
     totalReadingMinutes: 5,
     tags: ['Psychology', 'Mind', 'Decision Making'],
-    progress: 1.0, // COMPLETED
+    progress: 1.0,
     isPickedForYou: true,
     isSavedForLater: true,
+    highLevelSummaryFaIr: 'دانیال کانمن روانشناس برنده نوبل توضیح می‌دهد که چگونه ذهن ما توسط دو سیستم مجزا هدایت می‌شود: سیستم ۱ سریع و شهودی، سیستم ۲ کند و منطقی.',
+    highLevelSummaryFaAf: 'دانیال کانمن روانشناس برنده نوبل توضیح می‌دهد که چسان ذهن ما توسط دو سیستم هدایت می‌گردد: سیستم ۱ شتابان و حدسی، سیستم ۲ آرام و منطقی.',
+    highLevelSummaryEnUs: 'Nobel laureate Daniel Kahneman reveals the two systems that drive the way we think: System 1 (fast, emotional) and System 2 (slow, logical).',
+    whatYouWillLearnFaIr: [
+      'درک تمایز میان سیستم ۱ سریع و ناخودآگاه با سیستم ۲ کند و تحلیلی.',
+      'شناسایی خطاهای شناختی رایج مانند خطای خستگی از تصمیم‌گیری و خطای چارچوب‌بندی.',
+      'چگونگی اتخاذ تصمیم‌های هوشمندانه‌تر و منطقی‌تر در زندگی شخصی و حرفه‌ای.',
+    ],
+    whatYouWillLearnFaAf: [
+      'درک تمایز میان سیستم ۱ شتابان و ناخودآگاه با سیستم ۲ آرام و تحلیلی.',
+      'شناسایی خطاهای ذهنی رایج در هنگام تصمیم‌گیری.',
+      'چگونگی اتخاذ تصمیم‌های هوشمندانه‌تر در زندگی شخصی و کاری.',
+    ],
+    whatYouWillLearnEnUs: [
+      'The difference between System 1 (fast, intuitive) and System 2 (slow, analytical).',
+      'How cognitive biases influence daily choices and financial judgments.',
+      'Techniques to overcome overconfidence and noise in decision-making.',
+    ],
+    aboutAuthorFaIr: 'دانیال کانمن روانشناس اسرائیلی-آمریکایی و برنده جایزه نوبل اقتصاد در سال ۲۰۰۲ برای تحقیقات پیشگامانه روی تصمیم‌گیری است.',
+    aboutAuthorFaAf: 'دانیال کانمن روانشناس برنده جایزه نوبل اقتصاد سال ۲۰۰۲ به خاطر تحقیقات علمی اش بر روی تصمیم‌گیری انسانی است.',
+    aboutAuthorEnUs: 'Daniel Kahneman was an Israeli-American psychologist awarded the 2002 Nobel Prize in Economic Sciences.',
     cards: [
       const TakeawayCard(
         cardId: 'tfs_card_1',
@@ -69,10 +122,21 @@ final List<BookSummary> sampleBookSummaries = [
         audioStartMs: 0,
         audioEndMs: 15000,
       ),
+      const TakeawayCard(
+        cardId: 'tfs_card_2',
+        summaryId: 'thinking_fast_slow_02',
+        cardIndex: 2,
+        type: CardType.keyPrinciple,
+        contentFaIr: 'خطاهای شناختی ناشی از تکیه بیش از حد بر سیستم ۱ در مواقع حساس هستند.',
+        contentFaAf: 'اشتباهات ذهنی ناشی از اتکای بیش از حد بر سیستم ۱ در حالات مهم می‌باشند.',
+        contentEnUs: 'Cognitive biases arise when we overly rely on System 1 for complex judgments.',
+        audioStartMs: 15000,
+        audioEndMs: 30000,
+      ),
     ],
   ),
 
-  // 3. Deep Work (In Progress)
+  // 3. Deep Work
   BookSummary(
     summaryId: 'deep_work_03',
     titleFaIr: 'کار عمیق',
@@ -86,6 +150,27 @@ final List<BookSummary> sampleBookSummaries = [
     progress: 0.25,
     isPickedForYou: true,
     isSavedForLater: true,
+    highLevelSummaryFaIr: 'کار عمیق توانایی تمرکز بدون حواس‌پرتی بر روی کارهای دشوار ذهنی است که به شما امکان می‌دهد اطلاعات پیچیده را سریع‌تر بیاموزید.',
+    highLevelSummaryFaAf: 'کار عمیق توانایی تمرکز بدون حواس‌پرتی روی کارهای دشوار ذهنی است که به شما امکان می‌دهد اطلاعات پیچیده را شتابان‌تر بیاموزید.',
+    highLevelSummaryEnUs: 'Deep Work demonstrates how cultivating a practice of intense focus allows you to master complicated information and produce better results in less time.',
+    whatYouWillLearnFaIr: [
+      'ارزش نادر و حیاتی تمرکز عمیق در دنیای پر از شبکه‌های اجتماعی و پیام‌ها.',
+      '۴ استراتژی برنامه ریزی برای ادغام کار عمیق در روتین روزانه.',
+      'نحوه حذف حواس‌پرتی‌های سطحی و بهره‌گیری از خلوت ذهنی.',
+    ],
+    whatYouWillLearnFaAf: [
+      'ارزش حیاتی تمرکز عمیق در دنیای پر از پیام‌ها و حواس‌پرتی‌ها.',
+      '۴ استراتژی برنامه‌ریزی برای ادغام کار عمیق در روال روزمره.',
+      'طریقه حذف حواس‌پرتی‌های سطحی و بهره‌مندی از خلوت ذهنی.',
+    ],
+    whatYouWillLearnEnUs: [
+      'Why deep focus is the superpower of the 21st-century knowledge economy.',
+      '4 depth philosophies: Monastic, Bimodal, Rhythmic, and Journalistic.',
+      'How to embrace boredom and quit non-essential social media distractions.',
+    ],
+    aboutAuthorFaIr: 'کال نیوپورت استاد علوم کامپیوتر در دانشگاه جورج‌تاون و نویسنده چندین کتاب پرفروش در زمینه تمرکز و فناوری است.',
+    aboutAuthorFaAf: 'کال نیوپورت استاد علوم کمپیوتری در پوهنتون جورج‌تاون و نویسنده چندین کتاب پرفروش در عرصه تمرکز است.',
+    aboutAuthorEnUs: 'Cal Newport is a computer science professor at Georgetown University and the bestselling author of Digital Minimalism.',
     cards: [
       const TakeawayCard(
         cardId: 'dw_card_1',
@@ -97,93 +182,6 @@ final List<BookSummary> sampleBookSummaries = [
         contentEnUs: 'Deep work is the ability to focus without distraction on a cognitively demanding task.',
         audioStartMs: 0,
         audioEndMs: 14000,
-      ),
-    ],
-  ),
-
-  // 4. The Psychology of Money (Completed & Saved for Later!)
-  BookSummary(
-    summaryId: 'psychology_of_money_04',
-    titleFaIr: 'روانشناسی پول',
-    titleFaAf: 'روانشناسی پول',
-    titleEnUs: 'The Psychology of Money',
-    originalAuthor: 'Morgan Housel',
-    coverImageUrl: 'https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=600&q=80',
-    category: 'Finance',
-    totalReadingMinutes: 5,
-    tags: ['Finance', 'Wealth', 'Behavior'],
-    progress: 1.0, // COMPLETED
-    isPickedForYou: true,
-    isSavedForLater: true,
-    cards: [
-      const TakeawayCard(
-        cardId: 'pom_card_1',
-        summaryId: 'psychology_of_money_04',
-        cardIndex: 1,
-        type: CardType.coreTakeaway,
-        contentFaIr: 'موفقیت مالی ربط چندانی به هوش شما ندارد، بلکه با رفتار و انضباط شما در ارتباط است.',
-        contentFaAf: 'موفقیت مالی ارتباط چندانی به هوش شما ندارد، بلکه با رفتار و انضباط شما ارتباط دارد.',
-        contentEnUs: 'Doing well with money has a little to do with how smart you are and a lot to do with how you behave.',
-        audioStartMs: 0,
-        audioEndMs: 16000,
-      ),
-    ],
-  ),
-
-  // 5. Start With Why (In Progress)
-  BookSummary(
-    summaryId: 'start_with_why_05',
-    titleFaIr: 'با چرا شروع کنید',
-    titleFaAf: 'با چرا شروع کنید',
-    titleEnUs: 'Start With Why',
-    originalAuthor: 'Simon Sinek',
-    coverImageUrl: 'https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=600&q=80',
-    category: 'Leadership',
-    totalReadingMinutes: 5,
-    tags: ['Leadership', 'Business', 'Motivation'],
-    progress: 0.15,
-    isPickedForYou: true,
-    isSavedForLater: true,
-    cards: [
-      const TakeawayCard(
-        cardId: 'sww_card_1',
-        summaryId: 'start_with_why_05',
-        cardIndex: 1,
-        type: CardType.coreTakeaway,
-        contentFaIr: 'مردم آنچه را انجام می‌دهید نمی‌خرند؛ آنها «چرا»یی انجام آن را می‌خرند.',
-        contentFaAf: 'مردم آنچه انجام می‌دهید را نمی‌خرند؛ آنها «چرا»ی آن را می‌خرند.',
-        contentEnUs: 'People don’t buy what you do; they buy why you do it.',
-        audioStartMs: 0,
-        audioEndMs: 13000,
-      ),
-    ],
-  ),
-
-  // 6. Sapiens (Saved for Later)
-  BookSummary(
-    summaryId: 'sapiens_06',
-    titleFaIr: 'انسان عاقل (ساپینس)',
-    titleFaAf: 'انسان عاقل (ساپینس)',
-    titleEnUs: 'Sapiens: A Brief History of Humankind',
-    originalAuthor: 'Yuval Noah Harari',
-    coverImageUrl: 'https://images.unsplash.com/photo-1461360370896-922624d12aa1?auto=format&fit=crop&w=600&q=80',
-    category: 'History',
-    totalReadingMinutes: 6,
-    tags: ['History', 'Culture', 'Evolution'],
-    progress: 0.0,
-    isPickedForYou: true,
-    isSavedForLater: true,
-    cards: [
-      const TakeawayCard(
-        cardId: 'sap_card_1',
-        summaryId: 'sapiens_06',
-        cardIndex: 1,
-        type: CardType.coreTakeaway,
-        contentFaIr: 'توانایی انسان‌ها در همکاری انعطاف‌پذیر در گروه‌های بزرگ، ناشی از تخیل و داستان‌های مشترک است.',
-        contentFaAf: 'توانایی انسان‌ها در همکاری انعطاف‌پذیر در گروه‌های بزرگ، ناشی از تخیل و داستان‌های مشترک است.',
-        contentEnUs: 'Sapiens rule the world because we are the only animal that can cooperate flexibly in large numbers.',
-        audioStartMs: 0,
-        audioEndMs: 18000,
       ),
     ],
   ),
@@ -207,14 +205,5 @@ final List<HighlightItem> sampleHighlights = [
     cardText: 'مغز ما از دو سیستم تصمیم‌گیری استفاده می‌کند: سیستم ۱ سریع و شهودی، سیستم ۲ کند و تحلیلی.',
     cardType: 'دستآورد اصلی',
     createdAt: DateTime.now().subtract(const Duration(days: 3)),
-  ),
-  HighlightItem(
-    id: 'hl_3',
-    bookSummaryId: 'psychology_of_money_04',
-    bookTitle: 'روانشناسی پول (The Psychology of Money)',
-    author: 'Morgan Housel',
-    cardText: 'موفقیت مالی ربط چندانی به هوش شما ندارد، بلکه با رفتار و انضباط شما در ارتباط است.',
-    cardType: 'دستآورد اصلی',
-    createdAt: DateTime.now().subtract(const Duration(days: 5)),
   ),
 ];
