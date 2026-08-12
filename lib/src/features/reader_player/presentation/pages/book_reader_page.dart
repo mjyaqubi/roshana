@@ -3,7 +3,7 @@ import 'package:flutter/services.dart';
 import '../../../../core/i18n/app_locale.dart';
 import '../../../../core/i18n/font_resolver.dart';
 import '../../../library/domain/entities/book_summary.dart';
-import '../widgets/card_deck_reader.dart';
+import 'book_full_reader_player_page.dart';
 
 class BookReaderPage extends StatefulWidget {
   final BookSummary bookSummary;
@@ -20,8 +20,6 @@ class BookReaderPage extends StatefulWidget {
 }
 
 class _BookReaderPageState extends State<BookReaderPage> {
-  bool _isPlaying = false;
-  double _playbackSpeed = 1.0;
   bool _isSaved = false;
 
   @override
@@ -30,58 +28,14 @@ class _BookReaderPageState extends State<BookReaderPage> {
     _isSaved = widget.bookSummary.isSavedForLater;
   }
 
-  void _togglePlayPause() {
-    HapticFeedback.selectionClick();
-    setState(() {
-      _isPlaying = !_isPlaying;
-    });
-  }
-
-  void _cycleSpeed() {
-    HapticFeedback.selectionClick();
-    setState(() {
-      if (_playbackSpeed == 1.0) {
-        _playbackSpeed = 1.25;
-      } else if (_playbackSpeed == 1.25) {
-        _playbackSpeed = 1.5;
-      } else if (_playbackSpeed == 1.5) {
-        _playbackSpeed = 2.0;
-      } else {
-        _playbackSpeed = 1.0;
-      }
-    });
-  }
-
-  void _openFullReadingMode({int initialCardIndex = 0}) {
+  void _openFullReaderPlayer({required int initialTabIndex}) {
     HapticFeedback.mediumImpact();
-    showModalBottomSheet(
-      context: context,
-      isScrollControlled: true,
-      backgroundColor: const Color(0xFF0F172A),
-      shape: const RoundedRectangleBorder(
-        borderRadius: BorderRadius.vertical(top: Radius.circular(24)),
-      ),
-      builder: (context) => SizedBox(
-        height: MediaQuery.of(context).size.height * 0.88,
-        child: Column(
-          children: [
-            // Sheet handle
-            Container(
-              margin: const EdgeInsets.only(top: 10, bottom: 6),
-              width: 40,
-              height: 4,
-              decoration: BoxDecoration(
-                color: Colors.white30,
-                borderRadius: BorderRadius.circular(4),
-              ),
-            ),
-            Expanded(
-              child: CardDeckReader(
-                bookSummary: widget.bookSummary,
-                currentLocale: widget.currentLocale,
-              ),
-            ),
-          ],
+    Navigator.of(context).push(
+      MaterialPageRoute(
+        builder: (context) => BookFullReaderPlayerPage(
+          bookSummary: widget.bookSummary,
+          currentLocale: widget.currentLocale,
+          initialTabIndex: initialTabIndex,
         ),
       ),
     );
@@ -371,7 +325,7 @@ class _BookReaderPageState extends State<BookReaderPage> {
 
                       return GestureDetector(
                         onTap: () {
-                          _openFullReadingMode(initialCardIndex: idx);
+                          _openFullReaderPlayer(initialTabIndex: 0);
                         },
                         child: Container(
                           margin: const EdgeInsets.only(bottom: 10),
@@ -481,9 +435,9 @@ class _BookReaderPageState extends State<BookReaderPage> {
             ),
           ),
 
-          // 9. Bottom Control Bar: Compact "Reading" button, Centered Play Button, Speed Button & Save Icon
+          // 9. Full Width Bottom Bar: Two Buttons ("Reading" & "Listening") covering entire width
           Container(
-            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+            padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 14),
             decoration: BoxDecoration(
               color: const Color(0xFF1E293B),
               borderRadius: const BorderRadius.vertical(top: Radius.circular(24)),
@@ -497,96 +451,57 @@ class _BookReaderPageState extends State<BookReaderPage> {
               ],
             ),
             child: Row(
-              mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                // Compact "Reading" Button (Smaller width, concise label)
-                ElevatedButton.icon(
-                  style: ElevatedButton.styleFrom(
-                    backgroundColor: const Color(0xFFF59E0B),
-                    foregroundColor: Colors.black,
-                    minimumSize: Size.zero,
-                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
-                    tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(14),
-                    ),
-                  ),
-                  onPressed: () => _openFullReadingMode(initialCardIndex: 0),
-                  icon: const Icon(Icons.chrome_reader_mode_rounded, size: 16),
-                  label: Text(
-                    isEn ? 'Reading' : 'مطالعه',
-                    style: RoshanaTypography.getTextStyle(
-                      currentLocale: widget.currentLocale,
-                      fontSize: 12,
-                      fontWeight: FontWeight.bold,
-                      color: Colors.black,
-                    ),
-                  ),
-                ),
-
-                // Primary Play Button in the MIDDLE
-                GestureDetector(
-                  onTap: _togglePlayPause,
-                  child: Container(
-                    width: 50,
-                    height: 50,
-                    decoration: const BoxDecoration(
-                      shape: BoxShape.circle,
-                      gradient: LinearGradient(
-                        colors: [Color(0xFFF59E0B), Color(0xFFD97706)],
+                // 1. "Reading" Button
+                Expanded(
+                  child: ElevatedButton.icon(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color(0xFF334155),
+                      foregroundColor: Colors.white,
+                      padding: const EdgeInsets.symmetric(vertical: 14),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(16),
+                        side: const BorderSide(color: Colors.white24),
                       ),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Color(0x66F59E0B),
-                          blurRadius: 10,
-                        ),
-                      ],
                     ),
-                    child: Icon(
-                      _isPlaying ? Icons.pause_rounded : Icons.play_arrow_rounded,
-                      color: Colors.black,
-                      size: 32,
+                    onPressed: () => _openFullReaderPlayer(initialTabIndex: 0),
+                    icon: const Icon(Icons.chrome_reader_mode_rounded, size: 20, color: Color(0xFFF59E0B)),
+                    label: Text(
+                      isEn ? 'Reading' : 'مطالعه',
+                      style: RoshanaTypography.getTextStyle(
+                        currentLocale: widget.currentLocale,
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.white,
+                      ),
                     ),
                   ),
                 ),
+                const SizedBox(width: 12),
 
-                // Speed Toggle Button & Save Icon
-                Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    GestureDetector(
-                      onTap: _cycleSpeed,
-                      child: Container(
-                        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-                        decoration: BoxDecoration(
-                          color: Colors.white10,
-                          borderRadius: BorderRadius.circular(12),
-                          border: Border.all(color: Colors.white24),
-                        ),
-                        child: Text(
-                          '${_playbackSpeed}x',
-                          style: const TextStyle(
-                            color: Color(0xFFF59E0B),
-                            fontSize: 12,
-                            fontWeight: FontWeight.bold,
-                          ),
-                        ),
+                // 2. "Listening" Button
+                Expanded(
+                  child: ElevatedButton.icon(
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: const Color(0xFFF59E0B),
+                      foregroundColor: Colors.black,
+                      padding: const EdgeInsets.symmetric(vertical: 14),
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(16),
                       ),
                     ),
-                    const SizedBox(width: 4),
-                    IconButton(
-                      icon: Icon(
-                        _isSaved ? Icons.bookmark_rounded : Icons.bookmark_border_rounded,
-                        color: const Color(0xFFF59E0B),
+                    onPressed: () => _openFullReaderPlayer(initialTabIndex: 1),
+                    icon: const Icon(Icons.headphones_rounded, size: 20, color: Colors.black),
+                    label: Text(
+                      isEn ? 'Listening' : 'شنیدار',
+                      style: RoshanaTypography.getTextStyle(
+                        currentLocale: widget.currentLocale,
+                        fontSize: 15,
+                        fontWeight: FontWeight.bold,
+                        color: Colors.black,
                       ),
-                      onPressed: () {
-                        HapticFeedback.lightImpact();
-                        setState(() {
-                          _isSaved = !_isSaved;
-                        });
-                      },
                     ),
-                  ],
+                  ),
                 ),
               ],
             ),
