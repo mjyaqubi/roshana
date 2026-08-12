@@ -344,7 +344,7 @@ class _BookReaderPageState extends State<BookReaderPage> {
                     const SizedBox(height: 22),
                   ],
 
-                  // 7. Clickable Key Points Titles (Navigates to exact card position in reading mode!)
+                  // 7. Clickable Key Points Titles
                   Align(
                     alignment: widget.currentLocale.direction == TextDirection.rtl
                         ? Alignment.centerRight
@@ -440,7 +440,7 @@ class _BookReaderPageState extends State<BookReaderPage> {
                   ),
                   const SizedBox(height: 22),
 
-                  // 8. About the Author (One Paragraph)
+                  // 8. About the Author
                   if (aboutAuthor.isNotEmpty) ...[
                     Align(
                       alignment: widget.currentLocale.direction == TextDirection.rtl
@@ -481,7 +481,7 @@ class _BookReaderPageState extends State<BookReaderPage> {
             ),
           ),
 
-          // 9. Bottom Audio Control Bar + Reading Button before Save Icon
+          // 9. Bottom Control Bar: Compact "Reading" button, Centered Play Button, Speed Button & Save Icon
           Container(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
             decoration: BoxDecoration(
@@ -499,60 +499,22 @@ class _BookReaderPageState extends State<BookReaderPage> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                // Play / Pause Button
-                GestureDetector(
-                  onTap: _togglePlayPause,
-                  child: Container(
-                    width: 48,
-                    height: 48,
-                    decoration: const BoxDecoration(
-                      shape: BoxShape.circle,
-                      gradient: LinearGradient(
-                        colors: [Color(0xFFF59E0B), Color(0xFFD97706)],
-                      ),
-                    ),
-                    child: Icon(
-                      _isPlaying ? Icons.pause_rounded : Icons.play_arrow_rounded,
-                      color: Colors.black,
-                      size: 30,
-                    ),
-                  ),
-                ),
-
-                // Speed Cycle Toggle
-                GestureDetector(
-                  onTap: _cycleSpeed,
-                  child: Container(
-                    padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
-                    decoration: BoxDecoration(
-                      color: Colors.white10,
-                      borderRadius: BorderRadius.circular(12),
-                    ),
-                    child: Text(
-                      '${_playbackSpeed}x',
-                      style: const TextStyle(
-                        color: Color(0xFFF59E0B),
-                        fontSize: 13,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                  ),
-                ),
-
-                // READING BUTTON (Opens full summary text reading mode before save icon!)
+                // Compact "Reading" Button (Smaller width, concise label)
                 ElevatedButton.icon(
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color(0xFFF59E0B),
                     foregroundColor: Colors.black,
+                    minimumSize: Size.zero,
+                    padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+                    tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                     shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(16),
+                      borderRadius: BorderRadius.circular(14),
                     ),
-                    padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
                   ),
                   onPressed: () => _openFullReadingMode(initialCardIndex: 0),
-                  icon: const Icon(Icons.chrome_reader_mode_rounded, size: 18),
+                  icon: const Icon(Icons.chrome_reader_mode_rounded, size: 16),
                   label: Text(
-                    isEn ? 'Read Summary' : 'مطالعه خلاصه',
+                    isEn ? 'Reading' : 'مطالعه',
                     style: RoshanaTypography.getTextStyle(
                       currentLocale: widget.currentLocale,
                       fontSize: 12,
@@ -562,18 +524,69 @@ class _BookReaderPageState extends State<BookReaderPage> {
                   ),
                 ),
 
-                // Save / Bookmark Icon Button
-                IconButton(
-                  icon: Icon(
-                    _isSaved ? Icons.bookmark_rounded : Icons.bookmark_border_rounded,
-                    color: const Color(0xFFF59E0B),
+                // Primary Play Button in the MIDDLE
+                GestureDetector(
+                  onTap: _togglePlayPause,
+                  child: Container(
+                    width: 50,
+                    height: 50,
+                    decoration: const BoxDecoration(
+                      shape: BoxShape.circle,
+                      gradient: LinearGradient(
+                        colors: [Color(0xFFF59E0B), Color(0xFFD97706)],
+                      ),
+                      boxShadow: [
+                        BoxShadow(
+                          color: Color(0x66F59E0B),
+                          blurRadius: 10,
+                        ),
+                      ],
+                    ),
+                    child: Icon(
+                      _isPlaying ? Icons.pause_rounded : Icons.play_arrow_rounded,
+                      color: Colors.black,
+                      size: 32,
+                    ),
                   ),
-                  onPressed: () {
-                    HapticFeedback.lightImpact();
-                    setState(() {
-                      _isSaved = !_isSaved;
-                    });
-                  },
+                ),
+
+                // Speed Toggle Button & Save Icon
+                Row(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    GestureDetector(
+                      onTap: _cycleSpeed,
+                      child: Container(
+                        padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 6),
+                        decoration: BoxDecoration(
+                          color: Colors.white10,
+                          borderRadius: BorderRadius.circular(12),
+                          border: Border.all(color: Colors.white24),
+                        ),
+                        child: Text(
+                          '${_playbackSpeed}x',
+                          style: const TextStyle(
+                            color: Color(0xFFF59E0B),
+                            fontSize: 12,
+                            fontWeight: FontWeight.bold,
+                          ),
+                        ),
+                      ),
+                    ),
+                    const SizedBox(width: 4),
+                    IconButton(
+                      icon: Icon(
+                        _isSaved ? Icons.bookmark_rounded : Icons.bookmark_border_rounded,
+                        color: const Color(0xFFF59E0B),
+                      ),
+                      onPressed: () {
+                        HapticFeedback.lightImpact();
+                        setState(() {
+                          _isSaved = !_isSaved;
+                        });
+                      },
+                    ),
+                  ],
                 ),
               ],
             ),
